@@ -192,7 +192,9 @@
                 'phone': query.phone
             }));
 
+            myApp.showPreloader();
             $$.getJSON('./api/v1/record/add.php', query, function(data) {
+                myApp.hidePreloader();
                 if (data.code == 200) {
                     mainView.router.load({
                         pageName: 'success',

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script type="text/javascript" src="./js/framework7.js"></script>
+    <link rel="stylesheet" href="./css/framework7-icons.css">
+
+    <!-- Styles -->
+    <script>
+        if (Framework7.prototype.device.android) {
+            document.write(
+                '<link rel="stylesheet" href="./css/framework7.material.min.css">' +
+                '<link rel="stylesheet" href="./css/framework7.material.colors.min.css">'
+            );
+        } else {
+            document.write(
+                '<link rel="stylesheet" href="./css/framework7.ios.min.css">' +
+                '<link rel="stylesheet" href="./css/framework7.ios.colors.min.css">'
+            );
+        }
+    </script>
+
+    <title>预定</title>
+    <!-- <link rel="stylesheet" href="./css/app.css"> -->
+</head>
+
+<body>
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="views">
+            <div class="view view-main">
+
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title center">预定</div>
+                    </div>
+                </div>
+
+                <div class="pages navbar-through">
+
+                    <div class="page cached" data-page="success">
+                        <div class="page-content">
+                            <div class="content-block center">
+                                <p>您已成功预订！</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page" data-page='main'>
+                        <div class="page-content">
+                            <div class="content-block-title">预定信息</div>
+                            <from class="list-block" id="form">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-media"><i class="icon f7-icons">bag</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title label"> 商品名称：</div>
+                                                <div class="item-input">
+                                                    <input type="text" name="name" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">tags</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 商品规格：</div>
+                                                    <div class="item-input">
+                                                        <input type="text" name="spec" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">info</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 商品说明：</div>
+                                                    <div class="item-input">
+                                                        <textarea class="resizable" name="comments" disabled></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">money_yen</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 商品售价：</div>
+                                                    <div class="item-input">
+                                                        <input type="number" style="color:red" name="sell_price" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">at</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 预定数量：</div>
+                                                    <div class="item-input">
+                                                        <input type="number" name="count" value="1" style="color:green">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">person</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 预定人：</div>
+                                                    <div class="item-input">
+                                                        <input type="text" name="purchaser" placeholder="请输入姓名">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon f7-icons">phone</i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title label"> 手机号码：</div>
+                                                    <div class="item-input">
+                                                        <input type="tel" name="phone" placeholder="请输入联系电话">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                </ul>
+                            </from>
+
+                            <div class="content-block">
+                                <a href="#" class="button form-to-data">提交</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var $$ = Dom7;
+
+        var myApp = new Framework7({
+            root: '#app',
+            pushState: true
+        });
+
+        // Initialize View          
+        var mainView = myApp.addView('.view-main', {
+            domCache: true
+        });
+        // // Load about page:
+        // mainView.router.load({
+        //     pageName: 'main'
+        // });
+
+        $$('.form-to-data').on('click', function() {
+
+            var formData = myApp.formToData('#form');
+            if (formData.count < 1) {
+                myApp.alert("购买数量必须大于0", "错误");
+                return;
+            }
+
+            if ("" == formData.purchaser) {
+                myApp.alert("请输入姓名", "错误");
+                return;
+            }
+            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            if (!myreg.test(formData.phone)) {
+                myApp.alert("手机号码不合法", "错误");
+                return;
+            }
+
+            var query = $$.parseUrlQuery(location.href);
+            query.count = formData.count;
+            query.phone = formData.phone;
+            query.purchaser = formData.purchaser;
+
+            localStorage.setItem("purchaser", JSON.stringify({
+                'purchaser': query.purchaser,
+                'phone': query.phone
+            }));
+
+            $$.getJSON('./api/v1/record/add.php', query, function(data) {
+                if (data.code == 200) {
+                    mainView.router.load({
+                        pageName: 'success',
+                        pushState: false
+                    });
+                } else {
+                    myApp.alert(data.msg, "错误");
+                }
+            });
+        });
+
+
+        var query = $$.parseUrlQuery(location.href);
+        $$.getJSON('./api/v1/goods/info.php', query, function(data) {
+            if (data.code == 200) {
+                data = data.data;
+
+                data.sell_price = parseFloat(data.sell_price).toFixed(2);
+
+                if (null == data.spec) {
+                    data.spec = "无"
+                }
+                if (null == data.comments) {
+                    data.comments = "无"
+                }
+                var purchaser = localStorage.getItem("purchaser");
+                if (purchaser != null && purchaser.length > 0) {
+                    purchaser = JSON.parse(purchaser);
+                    data = $$.extend(purchaser, data);
+                }
+
+                myApp.formFromData('#form', data);
+            } else {
+                myApp.alert(data.msg, "错误");
+            }
+        });
+    </script>
+</body>
+
+</html>

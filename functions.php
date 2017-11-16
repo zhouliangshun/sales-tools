@@ -193,8 +193,80 @@ function update_local_id($table_name, $data, $user){
                 }
             }
     }
-
-    
 }
+
+/**
+ * 获取物品信息
+ */
+function get_goods_info($id, $user){
+    global $wpdb;
+    $wp_table_name = get_wp_table_name('goods');
+    $goodses =  $wpdb->get_results("SELECT name ,spec ,sell_price ,comments FROM $wp_table_name WHERE user = '$user' AND id = $id");
+    if($goodses){
+        return $goodses[0];
+    }
+}
+
+/**
+ * 获取物品全部信息
+ */
+function get_goods_full_info($id, $user){
+    global $wpdb;
+    $wp_table_name = get_wp_table_name('goods');
+    $goodses =  $wpdb->get_results("SELECT * FROM $wp_table_name WHERE user = '$user' AND id = $id");
+    if($goodses){
+        return $goodses[0];
+    }
+}
+
+/**
+ * 获取记录信息
+ */
+function get_record_info($id, $user){
+    global $wpdb;
+    $wp_table_name = get_wp_table_name('record_describe');
+    $records =  $wpdb->get_results("SELECT * FROM $wp_table_name WHERE user = '$user' AND id = $id");
+    if($records){
+        return $records[0];
+    }
+}
+
+
+function add_sale_record($record, $goods, $count, $purchaser, $phone, $user){
+    global $wpdb;
+    $table_name = get_wp_table_name('sale_record');
+    $goods_name = $goods->name;
+    $query_str = "SELECT * FROM $table_name WHERE pid = $record AND user = '$user' AND goods = '$goods_name' AND purchaser = '$purchaser'";
+    $result = $wpdb->get_results($query_str);
+    if($result){
+        $count += $result[0]->count;
+       return $wpdb->update($table_name, array('count'=>$count,'update_date' => time()), array('id'=> $result[0]->id));
+    }else{
+
+        //检查客户是否存在
+        add_custom_ifnot_exist($purchaser, $phone, $user);
+
+        return $wpdb->insert($table_name, array('count'=>$count,
+                                         'user'=>$user,
+                                        'goods'=>$goods_name,
+                                        'purchaser' => $purchaser,
+                                        'sell_price' => $goods->sell_price,
+                                        'purchase_price' => $goods->sell_price,
+                                        'pid' => $record,
+                                        'update_date' => time()));
+    }
+}
+
+function add_custom_ifnot_exist($purchaser, $phone,  $user){
+    global $wpdb;
+    $table_name = get_wp_table_name('customer');
+    $query_str = "SELECT id  FROM $table_name WHERE phone = '$phone' AND user = '$user'";
+    $result = $wpdb->get_results($query_str);
+    if(!$result){
+        $wpdb->insert($table_name, array('user'=>$user,'phone'=>$phone,'name' => $purchaser,'update_date' => time()));
+    }
+}
+
+
 
 ?>

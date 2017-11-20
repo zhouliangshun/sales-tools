@@ -22,6 +22,7 @@ function get_update_record_describe_list($user, $last_time){
     return $result;
 }
 
+
 /**
  * 获取最新更新的商品销售记录，如果last_time == -1，返回所有记录
  */
@@ -29,6 +30,17 @@ function get_update_sale_record_list($user, $last_time){
     global $wpdb;
     $table_name = get_wp_table_name('sale_record');
     $query_str = "SELECT id AS server_id, local_id AS id, pid, purchaser, goods, spec, purchase_price, sell_price, count FROM $table_name WHERE update_date > $last_time AND user = '$user'";
+    $result = $wpdb->get_results($query_str);
+    return $result;
+}
+
+/**
+ * 获取某个人每次购买记录
+ */
+function get_sale_record_list($user, $record, $name){
+    global $wpdb;
+    $table_name = get_wp_table_name('sale_record');
+    $query_str = "SELECT id, goods, spec, sell_price AS price, count FROM $table_name WHERE pid = $record AND user = '$user' AND purchaser = '$name' GROUP BY goods";
     $result = $wpdb->get_results($query_str);
     return $result;
 }

@@ -42,15 +42,6 @@
                 </div>
 
                 <div class="pages navbar-through">
-
-                    <div class="page cached" data-page="success">
-                        <div class="page-content">
-                            <div class="content-block center">
-                                <p>您已成功预订！</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="page" data-page='main'>
                         <div class="page-content">
                             <div class="content-block-title">预定信息</div>
@@ -147,23 +138,31 @@
             </div>
         </div>
     </div>
+
+    <script id="successTemplate" type="text/template7">
+        <div class="page" data-page="success">
+            <div class="page-content">
+                <div class="content-block inset">
+                    <p>您已成功预订！</p>
+                    <p><a href="./my-booking-list.html?user={{user}}&record={{record}}&id={{name}}" class="button active">查看我的预定</a></p>
+                </div>
+            </div>
+        </div>
+    </script>
+
     <script>
         var $$ = Dom7;
 
         var myApp = new Framework7({
             root: '#app',
-            pushState: true
+            pushState: true,
+            ajaxLinks: "a.ajax",
+            template7Pages: true,
+            precompileTemplates: true
         });
 
         // Initialize View          
-        var mainView = myApp.addView('.view-main', {
-            domCache: true
-        });
-        // // Load about page:
-        // mainView.router.load({
-        //     pageName: 'main'
-        // });
-
+        var mainView = myApp.addView('.view-main');
         $$('.form-to-data').on('click', function() {
 
             var formData = myApp.formToData('#form');
@@ -176,8 +175,8 @@
                 myApp.alert("请输入姓名", "错误");
                 return;
             }
-            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-            if (!myreg.test(formData.phone)) {
+            var reg = /^1[34578]\d{9}$/;
+            if (!reg.test(formData.phone)) {
                 myApp.alert("手机号码不合法", "错误");
                 return;
             }
@@ -196,8 +195,17 @@
             $$.getJSON('./api/v1/record/add.php', query, function(data) {
                 myApp.hidePreloader();
                 if (data.code == 200) {
+                    var purchaser = localStorage.getItem("purchaser");
+                    if (purchaser != null && purchaser.length > 0) {
+                        purchaser = JSON.parse(purchaser);
+                    }
                     mainView.router.load({
-                        pageName: 'success',
+                        template: Template7.templates.successTemplate,
+                        context: {
+                            user: query.user,
+                            record: query.record,
+                            name: purchaser.purchaser
+                        },
                         pushState: false
                     });
                 } else {
@@ -205,8 +213,6 @@
                 }
             });
         });
-
-
         var query = $$.parseUrlQuery(location.href);
         $$.getJSON('./api/v1/goods/info.php', query, function(data) {
             if (data.code == 200) {

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <script type="text/javascript" src="./js/framework7.min.js"></script>
+    <title>我的预定</title>
+    <!-- <link rel="stylesheet" href="css/app.css"> -->
+    <!-- Styles -->
+    <script>
+        if (Framework7.prototype.device.android) {
+            document.write(
+                '<link rel="stylesheet" href="./css/framework7.material.min.css">' +
+                '<link rel="stylesheet" href="./css/framework7.material.colors.min.css">'
+            );
+        } else {
+            document.write(
+                '<link rel="stylesheet" href="./css/framework7.ios.min.css">' +
+                '<link rel="stylesheet" href="./css/framework7.ios.colors.min.css">'
+            );
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="views">
+            <div class="view view-main">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title center">我的预定</div>
+                    </div>
+                </div>
+                <div class="pages navbar-through">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script id="contentTemplate" type="text/template7">
+    <div class="page main-page" data-page="content">
+        <div class="page-content">
+            <div class="list-block">
+                <ul>
+                    {{#each this.items}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{this.goods}}</div>
+                                <div class="item-after" style="color:red">单价:￥{{this.price}}元</div>
+                            </div>
+                            <div class="item-subtitle">{{this.spec}}</div>
+                            <div class="item-text"><span class="badge color-red">x{{this.count}}</span></div>
+                        </div>
+                    </li>
+                    {{/each}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-after" style="color:green">共计:￥{{this.amount}}元</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    var $$ = Dom7;
+    var app = new Framework7({
+        root: "#app",
+        precompileTemplates: true,
+        template7Pages: true
+    });
+
+    // Add and init View
+    var mainView = app.addView('.view-main');
+
+    var query = $$.parseUrlQuery(location.href);
+    $$.getJSON('./api/v1/record/list.php', query, function(data) {
+        if (data.code == 200) {
+            var amount = 0.0;
+            $$.each(data.data, function(index, item) {
+                item.price = parseFloat(item.price).toFixed(2);
+                amount += item.price * item.count;
+            });
+
+            mainView.router.load({
+                template: Template7.templates.contentTemplate,
+                context: {
+                    items: data.data,
+                    amount: amount.toFixed(2)
+                }
+            });
+        } else {
+            app.alert(data.msg, "错误");
+        }
+    });
+</script>
+
+</html>

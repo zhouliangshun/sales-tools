@@ -21,11 +21,18 @@ require_once(dirname(dirname(dirname(dirname(__FILE__)))). '/wp-admin/includes/u
 register_activation_hook( __FILE__, array( 'SalesTools', 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( 'SalesTools', 'plugin_deactivation' ) );
 
+
+
+$salesToos = new SalesTools();
+
 class SalesTools {
 
     public function __Construct()
 	{
-         //add_action( "", function_to_add, priority, accepted_args )
+        //menus
+        add_action( "admin_init", array($this, 'add__admin_init') );
+        add_action( 'admin_menu', array($this, 'add__admin_menu'));
+
     }
 
     public static function plugin_activation(){
@@ -157,6 +164,38 @@ class SalesTools {
         $rawQuery =  str_replace('[PREFIX]', $table_prefix, $rawQuery);
         $wpdb->query($rawQuery);
     }
+
+
+
+    public function add__admin_init() {
+
+
+    }
+
+
+
+    public function add__admin_menu(){
+        
+        add_menu_page( '销售记录', '销售助手', 'manage_options',  'sales-tools', array($this, 'display_record_list')  ,'',20);
+
+        add_submenu_page( 'sales-tools', '客户管理' , '客户管理', 'manage_options', 'sales-customers',  array($this, 'display_custome_list'));
+        add_submenu_page( 'sales-tools', '商品管理',  '商品管理', 'manage_options', 'sales-goods',  array($this, 'display_goods_list'));
+    }
+
+
+    public function display_record_list(){
+		load_template(dirname( __FILE__ ) . '/templates/list-record.php');
+    }
+    
+    public function display_custome_list(){
+		load_template(dirname( __FILE__ ) . '/templates/list-customer.php');
+    }
+    
+    public function display_goods_list(){
+        load_template(dirname( __FILE__ ) . '/templates/list-goods.php');
+	}
+    
+
 
 
 }

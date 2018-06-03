@@ -37,10 +37,10 @@
                     if(isset($customers)) {
                         foreach($customers as $custome) {
                             echo "<tr id='$custome->server_id'><td><input id='cb-select-$custome->server_id' type='checkbox'></td>
-                            <th><span>$custome->name</span></tr>
-                            <th><span>$custome->address</span></tr>
-                            <th><span>$custome->phone</span></tr>
-                            <th></th></tr>";
+                            <th><span>$custome->name</span></th>
+                            <th><span>$custome->address</span></th>
+                            <th><span>$custome->phone</span></th>
+                            <th></th></th>";
                         } 
                     }
                    

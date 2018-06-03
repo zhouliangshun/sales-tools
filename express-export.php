@@ -1,7 +1,15 @@
+<?php
+    require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
+    if(!is_user_logged_in()){
+        auth_redirect();
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <link rel="stylesheet" href="./css/framework7.min.css">
   <title>导出快递</title>

@@ -89,7 +89,7 @@
         $(document).ready(function(){
             // 开始写 jQuery 代码...
             $('#cb-select-all').click(function(){
-                var isSelect = $this.is(":checked")
+                var isSelect = $(this).is(":checked")
                 if(isSelect) {
                     $('#the-list tr td input').attr('checked','checked')
                     $('#label-seleect-all').val("取消全选");
@@ -101,7 +101,7 @@
             $('#btn-export').click(function(){
                 var text  = "";
                 $('#the-list tr td input[checked]').each(function () {
-                var dataContains =  $this.parent.parent;
+                var dataContains =  $(this).parent.parent;
                 text += dataContains.children('.name:first p:first').val();
                 text += ","+dataContains.children('.address:first p:first').val();
                 text += ","+dataContains.children('.phone:first p:first').val();

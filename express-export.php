@@ -101,15 +101,17 @@
             $('#btn-export').click(function(){
                 var text  = "";
                 $('#the-list tr td input:checked').each(function () {
-                var dataContains =  $(this).parent().parent();
-                text += dataContains.children('.name:first p:first').val();
-                text += ","+dataContains.children('.address:first p:first').val();
-                text += ","+dataContains.children('.phone:first p:first').val();
+                var dataContains =  $(this).closest('tr');
+                text += dataContains.children('.name:first p').text();
+                text += ","+dataContains.children('.address p').text();
+                text += ","+dataContains.children('.phone p').text();
                 text += ",化妆品;";
                 });
 
-                Copied = text.createTextRange();
-                Copied.execCommand("Copy");
+                if(window.clipboardData) {
+                    window.clipboardData.clearData();
+                    window.clipboardData.setData("Text", text);
+                } 
                 alert("已经复制到剪贴板！");
                 window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=240,height=600");
             });

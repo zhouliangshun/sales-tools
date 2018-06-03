@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
+    require_once(dirname(__FILE__).'/functions.php');
     if(!is_user_logged_in()){
         auth_redirect();
         exit;
@@ -30,16 +31,19 @@
             </thead>
             <tbody id="the-list">
                 <?php 
-                    require_once(dirname(__FILE__).'/functions.php');
+                    
                     $user = wp_get_current_user(); 
                     $customers = get_customer_list($user->user_login);
-                    foreach($customers as $custome) {
-                        echo "<tr id='$custome->server_id'><td><input id='cb-select-$custome->server_id' type='checkbox'></td>
-                        <th><span>$custome->name</span></tr>
-                        <th><span>$custome->address</span></tr>
-                        <th><span>$custome->phone</span></tr>
-                        <th></th></tr>";
-                    } 
+                    if(isset($customers)) {
+                        foreach($customers as $custome) {
+                            echo "<tr id='$custome->server_id'><td><input id='cb-select-$custome->server_id' type='checkbox'></td>
+                            <th><span>$custome->name</span></tr>
+                            <th><span>$custome->address</span></tr>
+                            <th><span>$custome->phone</span></tr>
+                            <th></th></tr>";
+                        } 
+                    }
+                   
                 ?>
             </tbody>
         <tabel>

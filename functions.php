@@ -57,6 +57,18 @@ function get_update_customer_list($user, $last_time){
 }
 
 /**
+ * 获取用户的客户列表
+ */
+function get_customer_list($user){
+    global $wpdb;
+    $table_name = get_wp_table_name('customer');
+    $query_str = "SELECT id AS server_id, local_id AS id, name, phone, address, wechat, birthday, amount, score FROM $table_name WHERE user = '$user'";
+    $result = $wpdb->get_results($query_str);
+    return $result;
+}
+
+
+/**
  * 获取最新更新商品信息，如果last_time == -1，返回所有记录
  */
 function get_update_goods_list($user, $last_time){

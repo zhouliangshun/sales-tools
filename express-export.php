@@ -101,10 +101,10 @@
             $('#btn-export').click(function(){
                 var text  = "";
                 $('#the-list tr td input:checked').each(function () {
-                var dataContains =  $(this).parent.parent;
-                text += $(dataContains).children('.name:first p:first').val();
-                text += ","+(dataContains).children('.address:first p:first').val();
-                text += ","+(dataContains).children('.phone:first p:first').val();
+                var dataContains =  $(this).parent().parent();
+                text += dataContains.children('.name:first p:first').val();
+                text += ","+dataContains.children('.address:first p:first').val();
+                text += ","+dataContains.children('.phone:first p:first').val();
                 text += ",化妆品;";
                 });
 

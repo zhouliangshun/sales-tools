@@ -43,7 +43,8 @@
             background: #F5FAFA;
         }
     </style>
-    <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <!-- <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script> -->
+    <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js">
     <script>
     
     $(function(){

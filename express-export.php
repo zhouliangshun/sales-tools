@@ -91,7 +91,7 @@
             $('#cb-select-all').click(function(){
                 var isSelect = $(this).is(":checked")
                 if(isSelect) {
-                    $('#the-list tr td input').attr('checked','checked')
+                    $('#the-list tr td input').attr('checked','true')
                     $('#label-seleect-all').val("取消全选");
                 }else {
                     $('#the-list tr td input').removeAttr('checked');

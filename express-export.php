@@ -82,9 +82,8 @@
                 ?>
             </tbody>
         </table>
-
-         <textarea placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
     </div>
+    <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
 
     <script type="text/javascript" src="./js/framework7.min.js"></script>
     <script>
@@ -105,9 +104,9 @@
                 var text  = "";
                 $('#the-list tr td input:checked').each(function () {
                     var dataContains =  $(this).closest('tr')[0];
-                    text += $(dataContains).children('.name:first p').text();
-                    text += ","+$(dataContains).children('.address p').text();
-                    text += ","+$(dataContains).children('.phone p').text();
+                    text += $(dataContains).find('.name p').text();
+                    text += ","+$(dataContains).find('.address p').text();
+                    text += ","+$(dataContains).find('.phone p').text();
                     text += ",化妆品;";
                 });
 

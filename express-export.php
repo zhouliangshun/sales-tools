@@ -40,13 +40,13 @@
                             <th><span>$custome->name</span></th>
                             <th><span>$custome->address</span></th>
                             <th><span>$custome->phone</span></th>
-                            <th></th>";
+                            <th></th></tr>";
                         } 
                     }
                    
                 ?>
             </tbody>
-        <tabel>
+        </tabel>
     </div>
 
     <script type="text/javascript" src="./js/framework7.min.js"></script>

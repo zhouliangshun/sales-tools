@@ -19,7 +19,7 @@
 
 <body>
     <div id="app">
-        </tabel>
+        <tabel>
             <thead>
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
@@ -36,11 +36,13 @@
                     $customers = get_customer_list($user->user_login);
                     if(isset($customers)) {
                         foreach($customers as $custome) {
-                            echo "<tr id='$custome->server_id'><td><input id='cb-select-$custome->server_id' type='checkbox'></td>
+                            echo "<tr id='$custome->server_id'>
+                            <td><input id='cb-select-$custome->server_id' type='checkbox'></td>
                             <th><span>$custome->name</span></th>
                             <th><span>$custome->address</span></th>
                             <th><span>$custome->phone</span></th>
-                            <th></th></tr>";
+                            <th></th>
+                            </tr>\n";
                         } 
                     }
                    

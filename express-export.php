@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
-                    <th><span>姓名</span></tr>
+                    <th><span>姓名</span></th>
                     <th>地址</th>
                     <th>电话</th>
                     <th><input id="btn-export" type="button" value="导出"></th>

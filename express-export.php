@@ -13,20 +13,49 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <link rel="stylesheet" href="./css/framework7.min.css">
-  <title>导出快递</title>
+  <title>快递批量下单系统</title>
   <!-- <link rel="stylesheet" href="css/app.css"> -->
+
+   <style type="text/css">
+        table
+        {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <table>
             <thead>
+                <tr><h1>快递批量下单系统</h1></tr>
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
                     <th><span>姓名</span></th>
                     <th>地址</th>
                     <th>电话</th>
-                    <th><input id="btn-export" type="button" value="导出"></th>
+                    <th><input id="btn-export" type="button" value="下单"></th>
                 </tr>
             </thead>
             <tbody id="the-list">

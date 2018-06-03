@@ -24,8 +24,8 @@
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
                     <th><span>姓名</span></tr>
-                    <th>地址</tr>
-                    <th>电话</tr>
+                    <th>地址</th>
+                    <th>电话</th>
                     <th><input id="btn-export" type="button" value="导出"></th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                             <th><span>$custome->name</span></th>
                             <th><span>$custome->address</span></th>
                             <th><span>$custome->phone</span></th>
-                            <th></th></th>";
+                            <th></th>";
                         } 
                     }
                    

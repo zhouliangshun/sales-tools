@@ -21,7 +21,7 @@
         </tabel>
             <thead>
                 <tr>
-                    <td><label for="cb-select-all">全选<label><input id="cb-select-all" type="checkbox"></td>
+                    <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
                     <th><span>姓名</span></tr>
                     <th>地址</tr>
                     <th>电话</tr>

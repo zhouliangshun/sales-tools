@@ -46,10 +46,10 @@
 </head>
 
 <body>
+    <h3 align="center">快递批量下单系统<</h3>  
     <div id="app">
         <table>
             <thead>
-                <td><tr><th rowspan='4'><h1>快递批量下单系统</h1></th></tr></td>
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
                     <th><span>姓名</span></th>

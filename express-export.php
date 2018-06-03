@@ -19,7 +19,7 @@
 
 <body>
     <div id="app">
-        <tabel>
+        <table>
             <thead>
                 <tr>
                     <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
@@ -48,7 +48,7 @@
                    
                 ?>
             </tbody>
-        </tabel>
+        </table>
     </div>
 
     <script type="text/javascript" src="./js/framework7.min.js"></script>

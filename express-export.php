@@ -43,7 +43,7 @@
             background: #F5FAFA;
         }
     </style>
-    <script type='text/javascript' src='../../load-scripts.php?c=1&amp;load%5B%5D=jquery-core,jquery-migrate,utils,jquery-ui-core,jquery-ui-widget,jquery-ui-mouse,jquery-ui-sortable&amp;ver=4.9.6'></script>
+    <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
 </head>
 
 <body>

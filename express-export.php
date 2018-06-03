@@ -22,7 +22,7 @@
             </thead>
             <tbody id="the-list">
                 <?php 
-                    require_once(dirname('./functions.php'));
+                    require_once(dirname(__FILE__).'/functions.php');
                     $user = wp_get_current_user(); 
                     $customers = get_customer_list($user->user_login);
                     foreach($customers as $custome) {

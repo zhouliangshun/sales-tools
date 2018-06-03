@@ -91,10 +91,10 @@
             $('#cb-select-all').click(function(){
                 var isSelect = $(this).is(":checked")
                 if(isSelect) {
-                    $('#the-list tr td input').prop('checked')
+                    $('#the-list tr td input').attr('checked',true)
                     $('#label-seleect-all').text("取消全选");
                 }else {
-                    $('#the-list tr td input').removeProp('checked');
+                    $('#the-list tr td input').removeAttr('checked');
                     $('#label-seleect-all').text("全选");
                 }
             });
@@ -102,9 +102,9 @@
                 var text  = "";
                 $('#the-list tr td input:checked').each(function () {
                 var dataContains =  $(this).parent.parent;
-                text += dataContains.children('.name:first p:first').val();
-                text += ","+dataContains.children('.address:first p:first').val();
-                text += ","+dataContains.children('.phone:first p:first').val();
+                text += $(dataContains).children('.name:first p:first').val();
+                text += ","+(dataContains).children('.address:first p:first').val();
+                text += ","+(dataContains).children('.phone:first p:first').val();
                 text += ",化妆品;";
                 });
 

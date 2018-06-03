@@ -84,7 +84,7 @@
     <script type="text/javascript" src="./js/framework7.min.js"></script>
     <script>
     
-    $(function(){
+    $(document).ready(function(){
         // 开始写 jQuery 代码...
         $('#cb-select-all').onclikc(function(){
             var isSelect = $this.is(":checked")

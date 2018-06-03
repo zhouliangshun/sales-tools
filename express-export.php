@@ -43,15 +43,16 @@
             background: #F5FAFA;
         }
     </style>
+    <script type='text/javascript' src='../../load-scripts.php?c=1&amp;load%5B%5D=jquery-core,jquery-migrate,utils,jquery-ui-core,jquery-ui-widget,jquery-ui-mouse,jquery-ui-sortable&amp;ver=4.9.6'></script>
 </head>
 
 <body>
-    <h3 align="center">快递批量下单系统<</h3>  
+    <h3 align="center">快递批量下单系统</h3>  
     <div id="app">
         <table>
             <thead>
                 <tr>
-                    <th><label for="cb-select-all">全选</label><input id="cb-select-all" type="checkbox"></th>
+                    <th><input id="cb-select-all" type="checkbox"><label for="cb-select-all" id='label-seleect-all'>全选</label></th>
                     <th><span>姓名</span></th>
                     <th>地址</th>
                     <th>电话</th>
@@ -67,9 +68,9 @@
                         foreach($customers as $custome) {
                             echo "<tr id='$custome->server_id'>
                             <td><input id='cb-select-$custome->server_id' type='checkbox'></td>
-                            <th><span>$custome->name</span></th>
-                            <th><span>$custome->address</span></th>
-                            <th><span>$custome->phone</span></th>
+                            <th class = 'name'><p>$custome->name</p></th>
+                            <th class = 'address'><p>$custome->address</p></th>
+                            <th class = 'phone'><p>$custome->phone</p></th>
                             <th></th>
                             </tr>\n";
                         } 
@@ -81,6 +82,39 @@
     </div>
 
     <script type="text/javascript" src="./js/framework7.min.js"></script>
+    <script>
+    
+    $(function(){
+        // 开始写 jQuery 代码...
+        $('#cb-select-all').onclikc(function(){
+            var isSelect = $this.is(":checked")
+            if(isSelect) {
+                $('#the-list tr td input').attr('checked','checked')
+                $('#label-seleect-all').val("取消全选");
+            }else {
+                $('#the-list tr td input').removeAttr('checked');
+                $('#label-seleect-all').val("全选");
+            }
+        });
+        $('#btn-export').onclikc(function(){
+            var text  = "";
+            $('#the-list tr td input[checked]').each(function () {
+               var dataContains =  $this.parent.parent;
+               text += dataContains.children('.name:first p:first').val();
+               text += ","+dataContains.children('.address:first p:first').val();
+               text += ","+dataContains.children('.phone:first p:first').val();
+               text += ",化妆品;";
+            });
+
+            Copied = text.createTextRange();
+            Copied.execCommand("Copy");
+            alert("已经复制到剪贴板！");
+            window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=240,height=600");
+        });
+
+    }); 
+
+    </script>
 </body>
 
 </html>

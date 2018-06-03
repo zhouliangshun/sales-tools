@@ -45,39 +45,7 @@
     </style>
     <!-- <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script> -->
     <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js">
-    <script>
-    
-    $(function(){
-        // 开始写 jQuery 代码...
-        $('#cb-select-all').onclikc(function(){
-            var isSelect = $this.is(":checked")
-            if(isSelect) {
-                $('#the-list tr td input').attr('checked','checked')
-                $('#label-seleect-all').val("取消全选");
-            }else {
-                $('#the-list tr td input').removeAttr('checked');
-                $('#label-seleect-all').val("全选");
-            }
-        });
-        $('#btn-export').onclikc(function(){
-            var text  = "";
-            $('#the-list tr td input[checked]').each(function () {
-               var dataContains =  $this.parent.parent;
-               text += dataContains.children('.name:first p:first').val();
-               text += ","+dataContains.children('.address:first p:first').val();
-               text += ","+dataContains.children('.phone:first p:first').val();
-               text += ",化妆品;";
-            });
-
-            Copied = text.createTextRange();
-            Copied.execCommand("Copy");
-            alert("已经复制到剪贴板！");
-            window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=240,height=600");
-        });
-
-    }); 
-
-    </script>
+   
 </head>
 
 <body>
@@ -116,6 +84,39 @@
     </div>
 
     <script type="text/javascript" src="./js/framework7.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            // 开始写 jQuery 代码...
+            $('#cb-select-all').click(function(){
+                var isSelect = $this.is(":checked")
+                if(isSelect) {
+                    $('#the-list tr td input').attr('checked','checked')
+                    $('#label-seleect-all').val("取消全选");
+                }else {
+                    $('#the-list tr td input').removeAttr('checked');
+                    $('#label-seleect-all').val("全选");
+                }
+            });
+            $('#btn-export').click(function(){
+                var text  = "";
+                $('#the-list tr td input[checked]').each(function () {
+                var dataContains =  $this.parent.parent;
+                text += dataContains.children('.name:first p:first').val();
+                text += ","+dataContains.children('.address:first p:first').val();
+                text += ","+dataContains.children('.phone:first p:first').val();
+                text += ",化妆品;";
+                });
+
+                Copied = text.createTextRange();
+                Copied.execCommand("Copy");
+                alert("已经复制到剪贴板！");
+                window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=240,height=600");
+            });
+
+    }); 
+
+    </script>
    
 </body>
 

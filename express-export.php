@@ -113,7 +113,7 @@ if (!is_user_logged_in()) {
         });
         $.getJSON(url + "&ids="+encodeURIComponent(ids.join()),function(result){
             if(result['code'] == 200){
-                location.reload();
+                //location.reload();
             }
         });
     };

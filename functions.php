@@ -223,8 +223,8 @@ function delete_data_server($table_name, $ids,$user){
         }
         $wpdb->delete($wp_table_name, array('id'=>$id));
         if($result[0]->local_id) {
-            $wp_table_name = get_wp_table_name('delete_record');
-            $wpdb->insert($wp_table_name,['table_name'=>$table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
+            $wp_delete_table_name = get_wp_table_name('delete_record');
+            $wpdb->insert($wp_delete_table_name,['table_name'=>$wp_table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
         }
     }
 

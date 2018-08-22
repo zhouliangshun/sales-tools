@@ -202,7 +202,6 @@ function delete_data($table_name, $id){
 }
 
 function delete_data_server($table_name, $ids,$user){
-    echo json_encode($ids);
     $_ids = [];
     if(is_string($ids)){
         $_ids[] = $ids;
@@ -212,18 +211,20 @@ function delete_data_server($table_name, $ids,$user){
 
     global $wpdb;
     foreach ($_ids as $id){
-        if(isset($id)){
-            $wp_table_name = get_wp_table_name($table_name);
-            $result = $wpdb->get_results("SELECT local_id FROM $wp_table_name WHERE id = '$id' AND user = '$user'");
-            if(!$result){
-                continue;
-            }
-            $wpdb->delete($wp_table_name, array('id'=>$id));
-            if($result[0]->local_id) {
-                $table_name = get_wp_table_name('delete_record');
-                $wpdb->insert($table_name,['table_name'=>$table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
-            }
 
+        if(!$id){
+            continue;
+        }
+
+        $wp_table_name = get_wp_table_name($table_name);
+        $result = $wpdb->get_results("SELECT local_id FROM $wp_table_name WHERE id = '$id' AND user = '$user'");
+        if(!$result){
+            continue;
+        }
+        $wpdb->delete($wp_table_name, array('id'=>$id));
+        if($result[0]->local_id) {
+            $wp_table_name = get_wp_table_name('delete_record');
+            $wpdb->insert($table_name,['table_name'=>$wp_table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
         }
     }
 

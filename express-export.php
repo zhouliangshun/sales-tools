@@ -111,7 +111,7 @@ if (!is_user_logged_in()) {
         $('#the-list tr td input:checked').each(function () {
             ids.push($(this).attr("id").replace('cb-select-',''))
         });
-        $.getJSON(url + "&ids="+ids.join(),function(result){
+        $.getJSON(url + "&ids="+encodeURIComponent(ids.join()),function(result){
             if(result['code'] == 200){
                 location.reload();
             }

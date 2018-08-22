@@ -107,7 +107,6 @@ if (!is_user_logged_in()) {
     };
 
     function onDelete() {
-        let url = <?php plugins_url('api/v1/customer/delete', __FILE__)?>;
         var ids = new Array();
         $('#the-list tr td input:checked').each(function () {
             ids.push($(this).attr("id"))

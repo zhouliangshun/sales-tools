@@ -60,7 +60,7 @@ if (!is_user_logged_in()) {
             <th><span>姓名</span></th>
             <th>地址</th>
             <th>电话</th>
-            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete(<?php esc_url(plugins_url('api/v1/customer/delete', 'sales-tools'))?>)'>删除</th>
+            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete(<?php echo esc_url(plugins_url('api/v1/customer/delete', 'sales-tools'))?>)'>删除</th>
         </tr>
         </thead>
         <tbody id="the-list">

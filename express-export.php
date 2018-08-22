@@ -60,7 +60,7 @@ if (!is_user_logged_in()) {
             <th><span>姓名</span></th>
             <th>地址</th>
             <th>电话</th>
-            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete("<?php echo esc_url(plugins_url('api/v1/customer/delete', __FILE__.'sales-tools'))?>")'>删除</th>
+            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete("<?php  $user = wp_get_current_user();echo esc_url(plugins_url('api/v1/customer/delete?user=', __FILE__.'sales-tools')).$user->user_login?>")'>删除</th>
         </tr>
         </thead>
         <tbody id="the-list">
@@ -111,7 +111,7 @@ if (!is_user_logged_in()) {
         $('#the-list tr td input:checked').each(function () {
             ids.push($(this).attr("id").replace('cb-select-',''))
         });
-        $.getJSON(url + "?ids="+ids.join(),function(result){
+        $.getJSON(url + "&ids="+ids.join(),function(result){
             if(result['code'] == 200){
                 location.reload();
             }

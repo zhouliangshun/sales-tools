@@ -215,6 +215,7 @@ function delete_data_server($table_name, $ids,$user){
         if(isset($id)){
             $wp_table_name = get_wp_table_name($table_name);
             $result = $wpdb->get_results($wp_table_name, "SELECT local_id FROM $wp_table_name WHERE id = '$id' AND user = '$user'");
+            echo json_encode($result);
             if(!$result){
                 continue;
             }

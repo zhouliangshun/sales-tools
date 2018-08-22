@@ -107,7 +107,7 @@ function get_update_goods_pics_list($user, $last_time){
 function get_delete_ids($user){
     global $wpdb;
     $table_name = get_wp_table_name('delete_record');
-    $query_str = "SELECT table_name, record_id AS id FROM $table_name WHERE user = '$user'";
+    $query_str = "SELECT table_name, record_id FROM $table_name WHERE user = '$user'";
     $result = $wpdb->get_results($query_str);
     return $result;
 }
@@ -224,7 +224,7 @@ function delete_data_server($table_name, $ids,$user){
         $wpdb->delete($wp_table_name, array('id'=>$id));
         if($result[0]->local_id) {
             $wp_delete_table_name = get_wp_table_name('delete_record');
-            $wpdb->insert($wp_delete_table_name,['table_name'=>$wp_table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
+            $wpdb->insert($wp_delete_table_name,['table_name'=>$table_name,'record_id'=>$result[0]->local_id,'user'=>$user]);
         }
     }
 

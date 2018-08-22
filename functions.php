@@ -153,7 +153,7 @@ function update_last_sync_time($user, $last_time){
 /**
  * 更新数据
  */
-function update_date($table_name, $data, $user){
+function update_data($table_name, $data, $user){
 
     if(isset($data)){
 
@@ -190,7 +190,7 @@ function update_date($table_name, $data, $user){
     
 }
 
-function delete_date($table_name, $id){
+function delete_data($table_name, $id){
 
     if(isset($id)){
         global $wpdb;
@@ -199,6 +199,27 @@ function delete_date($table_name, $id){
     }
 
     
+}
+
+function delete_data_server($table_name, $ids,$user){
+
+    $_ids = [];
+    if(is_string($ids)){
+        $_ids[] = $ids;
+    }else if(is_array($ids)){
+        $_ids = $ids;
+    }
+
+    global $wpdb;
+    foreach ($_ids as $id){
+        if(isset($id)){
+            $wp_table_name = get_wp_table_name($table_name);
+            $wpdb->delete($wp_table_name, array('id'=>$id));
+            $table_name = get_wp_table_name('delete_record');
+            $wpdb->insert($table_name,['table_name'=>$table_name,'record_id'=>$id,'user'=>$user]);
+        }
+    }
+
 }
 
 /**

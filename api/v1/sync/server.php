@@ -8,27 +8,27 @@ $last_time = $data["time"];
 
 //describe
 update_local_id('record_describe',$data['ids']['describes'],$user);
-$result_ids['describes'] = update_date('record_describe', $data['describes'], $user);
+$result_ids['describes'] = update_data('record_describe', $data['describes'], $user);
 
 //sales
 update_local_id('sale_record',$data['ids']['sales'],$user);
-$result_ids['sales'] = update_date('sale_record', $data['sales'], $user);
+$result_ids['sales'] = update_data('sale_record', $data['sales'], $user);
 
 //customer
 update_local_id('customer',$data['ids']['customers'],$user);
-$result_ids['customers'] = update_date('customer', $data['customers'], $user);
+$result_ids['customers'] = update_data('customer', $data['customers'], $user);
 
 //goods
 update_local_id('goods',$data['ids']['goods'],$user);
-$result_ids['goods'] = update_date('goods', $data['goods'], $user);
+$result_ids['goods'] = update_data('goods', $data['goods'], $user);
 
 //paid
 update_local_id('paid_flag',$data['ids']['paids'],$user);
-$result_ids['paids'] = update_date('paid_flag', $data['paids'], $user);
+$result_ids['paids'] = update_data('paid_flag', $data['paids'], $user);
 
 //pics
 update_local_id('goods_pics',$data['ids']['pics'],$user);
-$result_ids['pics'] = update_date('goods_pics', $data['pics'], $user);
+$result_ids['pics'] = update_data('goods_pics', $data['pics'], $user);
 
 foreach($data['delete'] as $delete){
     $table_name = null;
@@ -54,7 +54,7 @@ foreach($data['delete'] as $delete){
     }
 
     if($table_name){
-        delete_date($table_name, $delete['record_id']);
+        delete_data($table_name, $delete['record_id']);
     }
 }
 

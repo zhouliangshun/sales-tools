@@ -6,7 +6,7 @@
  * Time: 8:36 PM
  */
 
-require_once(plugin_dir_path( __FILE__ ).'/functions.php');
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/functions.php');
 
 $ids = explode(",",$_REQUEST['ids']);
 $user = $_REQUEST['user'];

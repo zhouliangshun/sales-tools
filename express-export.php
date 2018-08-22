@@ -60,7 +60,7 @@ if (!is_user_logged_in()) {
             <th><span>姓名</span></th>
             <th>地址</th>
             <th>电话</th>
-            <th><a id="btn-export">下单</a>|<a id="btn-delete">删除</th>
+            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete()'>删除</th>
         </tr>
         </thead>
         <tbody id="the-list">
@@ -85,9 +85,39 @@ if (!is_user_logged_in()) {
     </table>
 </div>
 <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
-
-<script type="text/javascript" src="./js/framework7.min.js"></script>
 <script>
+
+
+    function onExport() {
+        var text = "";
+        $('#the-list tr td input:checked').each(function () {
+            var dataContains = $(this).closest('tr')[0];
+            text += $(dataContains).find('.name input').val();
+            text += "," + $(dataContains).find('.address input').val();
+            text += "," + $(dataContains).find('.phone input').val();
+            text += ",化妆品;";
+        });
+
+        $('#data-text').text(text);
+        $('#data-text').copyme();
+
+        alert("已经复制到剪贴板！");
+
+        window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
+    };
+
+    function onDelete() {
+        let url = <?php plugins_url('api/v1/customer/delete', __FILE__)?>;
+        var ids = new Array();
+        $('#the-list tr td input:checked').each(function () {
+            ids.push($(this).attr("id"))
+        });
+        $.getJSON(url + "ids="+ids.join(),function(result){
+            if(result['code'] == 200){
+                location.reload();
+            }
+        });
+    };
 
     $(document).ready(function () {
         // 开始写 jQuery 代码...
@@ -132,6 +162,10 @@ if (!is_user_logged_in()) {
         });
 
     });
+
+
+
+
 
 </script>
 

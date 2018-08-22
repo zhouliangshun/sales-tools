@@ -60,7 +60,7 @@ if (!is_user_logged_in()) {
             <th><span>姓名</span></th>
             <th>地址</th>
             <th>电话</th>
-            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete()'>删除</th>
+            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete(<?php plugins_url('api/v1/customer/delete', __FILE__)?>;)'>删除</th>
         </tr>
         </thead>
         <tbody id="the-list">
@@ -148,8 +148,7 @@ if (!is_user_logged_in()) {
 
             window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
         });
-        $('#btn-delete').click(function () {
-            var url = <?php plugins_url('api/v1/customer/delete', __FILE__)?>;
+        $('#btn-delete').click(function (url) {
             var ids = new Array();
             $('#the-list tr td input:checked').each(function () {
                 ids.push($(this).attr("id"))

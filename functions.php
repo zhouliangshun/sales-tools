@@ -202,7 +202,7 @@ function delete_data($table_name, $id){
 }
 
 function delete_data_server($table_name, $ids,$user){
-
+    echo json_encode($ids);
     $_ids = [];
     if(is_string($ids)){
         $_ids[] = $ids;
@@ -215,7 +215,6 @@ function delete_data_server($table_name, $ids,$user){
         if(isset($id)){
             $wp_table_name = get_wp_table_name($table_name);
             $result = $wpdb->get_results("SELECT local_id FROM $wp_table_name WHERE id = '$id' AND user = '$user'");
-            echo json_encode($result);
             if(!$result){
                 continue;
             }

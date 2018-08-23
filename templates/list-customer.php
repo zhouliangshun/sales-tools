@@ -1,5 +1,5 @@
 <?php
-    echo plugin_dir_path(__FILE__) . '/sales-tools/functions.php';
+    require_once (plugin_dir_path('/functions.php'));
 ?>
 
 <h3 align="center">快递批量下单系统</h3>

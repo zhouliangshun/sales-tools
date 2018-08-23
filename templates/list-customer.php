@@ -1,6 +1,6 @@
 <?php
 include_once plugin_dir_path(__FILE__) . '../functions.php';
-echo plugin_dir_path(__FILE__) . '../css/list.css';
+echo dir( plugin_dir_path(__FILE__) . '../css/list.css');
 wp_enqueue_style('list_css', plugin_dir_path(__FILE__) . '../css/list.css', array(), '1.0.0', true);
 ?>
 

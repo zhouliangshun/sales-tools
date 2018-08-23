@@ -2,7 +2,6 @@
     require_once(plugin_dir_path(__FILE__) . '/sales-tools/functions.php');
 ?>
 
-
 <h3 align="center">快递批量下单系统</h3>
 <div id="wrap">
     <table>
@@ -41,82 +40,82 @@
     </table>
 </div>
 <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
-<script>
-
-
-    function onExport() {
-        var text = "";
-        $('#the-list tr td input:checked').each(function () {
-            var dataContains = $(this).closest('tr')[0];
-            text += $(dataContains).find('.name input').val();
-            text += "," + $(dataContains).find('.address input').val();
-            text += "," + $(dataContains).find('.phone input').val();
-            text += ",化妆品;";
-        });
-
-        $('#data-text').text(text);
-        $('#data-text').copyme();
-
-        alert("已经复制到剪贴板！");
-
-        window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
-    };
-
-    function onDelete(url) {
-        var ids = new Array();
-        $('#the-list tr td input:checked').each(function () {
-            ids.push($(this).attr("id").replace('cb-select-', ''))
-        });
-        $.getJSON(url + "&ids=" + encodeURIComponent(ids.join()), function (result) {
-            if (result['code'] == 200) {
-                location.reload();
-            }
-        });
-    };
-
-    $(document).ready(function () {
-        // 开始写 jQuery 代码...
-        $('#cb-select-all').click(function () {
-            var isSelect = $(this).is(":checked")
-            if (isSelect) {
-                $('#the-list tr td input').attr('checked', true)
-                $('#label-seleect-all').text("取消全选");
-            } else {
-                $('#the-list tr td input').removeAttr('checked');
-                $('#label-seleect-all').text("全选");
-            }
-        });
-        // $('#btn-export').click(function () {
-        //     var text = "";
-        //     $('#the-list tr td input:checked').each(function () {
-        //         var dataContains = $(this).closest('tr')[0];
-        //         text += $(dataContains).find('.name input').val();
-        //         text += "," + $(dataContains).find('.address input').val();
-        //         text += "," + $(dataContains).find('.phone input').val();
-        //         text += ",化妆品;";
-        //     });
-        //
-        //     $('#data-text').text(text);
-        //     $('#data-text').copyme();
-        //
-        //     alert("已经复制到剪贴板！");
-        //
-        //     window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
-        // });
-        // $('#btn-delete').click(function (url) {
-        //     var ids = new Array();
-        //     $('#the-list tr td input:checked').each(function () {
-        //         ids.push($(this).attr("id"))
-        //     });
-        //     $.getJSON(url + "ids="+ids.join(),function(result){
-        //         if(result['code'] == 200){
-        //             location.reload();
-        //         }
-        //     });
-        // });
-
-    });
-
-</script>
+<!--<script>-->
+<!---->
+<!---->
+<!--    function onExport() {-->
+<!--        var text = "";-->
+<!--        $('#the-list tr td input:checked').each(function () {-->
+<!--            var dataContains = $(this).closest('tr')[0];-->
+<!--            text += $(dataContains).find('.name input').val();-->
+<!--            text += "," + $(dataContains).find('.address input').val();-->
+<!--            text += "," + $(dataContains).find('.phone input').val();-->
+<!--            text += ",化妆品;";-->
+<!--        });-->
+<!---->
+<!--        $('#data-text').text(text);-->
+<!--        $('#data-text').copyme();-->
+<!---->
+<!--        alert("已经复制到剪贴板！");-->
+<!---->
+<!--        window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");-->
+<!--    };-->
+<!---->
+<!--    function onDelete(url) {-->
+<!--        var ids = new Array();-->
+<!--        $('#the-list tr td input:checked').each(function () {-->
+<!--            ids.push($(this).attr("id").replace('cb-select-', ''))-->
+<!--        });-->
+<!--        $.getJSON(url + "&ids=" + encodeURIComponent(ids.join()), function (result) {-->
+<!--            if (result['code'] == 200) {-->
+<!--                location.reload();-->
+<!--            }-->
+<!--        });-->
+<!--    };-->
+<!---->
+<!--    $(document).ready(function () {-->
+<!--        // 开始写 jQuery 代码...-->
+<!--        $('#cb-select-all').click(function () {-->
+<!--            var isSelect = $(this).is(":checked")-->
+<!--            if (isSelect) {-->
+<!--                $('#the-list tr td input').attr('checked', true)-->
+<!--                $('#label-seleect-all').text("取消全选");-->
+<!--            } else {-->
+<!--                $('#the-list tr td input').removeAttr('checked');-->
+<!--                $('#label-seleect-all').text("全选");-->
+<!--            }-->
+<!--        });-->
+<!--        // $('#btn-export').click(function () {-->
+<!--        //     var text = "";-->
+<!--        //     $('#the-list tr td input:checked').each(function () {-->
+<!--        //         var dataContains = $(this).closest('tr')[0];-->
+<!--        //         text += $(dataContains).find('.name input').val();-->
+<!--        //         text += "," + $(dataContains).find('.address input').val();-->
+<!--        //         text += "," + $(dataContains).find('.phone input').val();-->
+<!--        //         text += ",化妆品;";-->
+<!--        //     });-->
+<!--        //-->
+<!--        //     $('#data-text').text(text);-->
+<!--        //     $('#data-text').copyme();-->
+<!--        //-->
+<!--        //     alert("已经复制到剪贴板！");-->
+<!--        //-->
+<!--        //     window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");-->
+<!--        // });-->
+<!--        // $('#btn-delete').click(function (url) {-->
+<!--        //     var ids = new Array();-->
+<!--        //     $('#the-list tr td input:checked').each(function () {-->
+<!--        //         ids.push($(this).attr("id"))-->
+<!--        //     });-->
+<!--        //     $.getJSON(url + "ids="+ids.join(),function(result){-->
+<!--        //         if(result['code'] == 200){-->
+<!--        //             location.reload();-->
+<!--        //         }-->
+<!--        //     });-->
+<!--        // });-->
+<!---->
+<!--    });-->
+<!---->
+<!--</script>-->
 
 

@@ -1,7 +1,7 @@
 <?php
 include_once plugin_dir_path(__FILE__) . '../functions.php';
-echo dir( plugin_dir_path(__FILE__) . '../css/list.css');
-wp_enqueue_style('list_css', plugin_dir_path(__FILE__) . '../css/list.css', array(), '1.0.0', true);
+echo dirname(plugin_dir_path(__FILE__) . '../css/list.css');
+wp_enqueue_style('list_css', dirname(plugin_dir_path(__FILE__) . '../css/list.css'), array(), '1.0.0', true);
 ?>
 
 <h1 class="wp-heading-inline"> <?= esc_html(get_admin_page_title()); ?> </h1>

@@ -188,7 +188,7 @@ class SalesTools {
     }
     
     public function display_customer_list(){
-        wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'/css/list.css',array(),'1.0.0',true);
+//        wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'/css/list.css',array(),'1.0.0',true);
         wp_enqueue_script('jquery');
 		load_template(dirname( __FILE__ ) . '/templates/list-customer.php');
     }

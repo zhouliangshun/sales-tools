@@ -69,27 +69,27 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     };
 
     function onDelete(url) {
-        var ids = new Array();
-        $('#the-list tr td input:checked').each(function () {
-            ids.push($(this).attr("id").replace('cb-select-', ''))
+        let ids = new Array();
+        jQuery('#the-list tr td input:checked').each(function () {
+            ids.push(jQuery(this).attr("id").replace('cb-select-', ''))
         });
-        $.getJSON(url + "&ids=" + encodeURIComponent(ids.join()), function (result) {
+        jQuery.getJSON(url + "&ids=" + encodeURIComponent(ids.join()), function (result) {
             if (result['code'] == 200) {
                 location.reload();
             }
         });
     };
 
-    $(document).ready(function () {
+    jQuery(document).ready(function () {
         // 开始写 jQuery 代码...
-        $('#cb-select-all').click(function () {
-            var isSelect = $(this).is(":checked")
+        jQuery('#cb-select-all').click(function () {
+            let isSelect = jQuery(this).is(":checked")
             if (isSelect) {
-                $('#the-list tr td input').attr('checked', true)
-                $('#label-seleect-all').text("取消全选");
+                jQuery('#the-list tr td input').attr('checked', true)
+                jQuery('#label-seleect-all').text("取消全选");
             } else {
-                $('#the-list tr td input').removeAttr('checked');
-                $('#label-seleect-all').text("全选");
+                jQuery('#the-list tr td input').removeAttr('checked');
+                jQuery('#label-seleect-all').text("全选");
             }
         });
 

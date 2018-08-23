@@ -196,7 +196,7 @@ function update_server($table_name, $key, $data, $id, $user){
         global $wpdb;
         $wp_table_name = get_wp_table_name($table_name);
         $data['update_date'] = time();
-        echo json_encode(compact('id','user'));
+        echo json_encode($data);
         if(!($id != 0 &&
             $wpdb->update($wp_table_name, $data, compact('id','user'))))
         {

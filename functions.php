@@ -196,8 +196,7 @@ function update_server($table_name, $key, $data, $id, $user){
         global $wpdb;
         $wp_table_name = get_wp_table_name($table_name);
         $data['update_date'] = time();
-        if(!($id != 0 &&
-            $wpdb->update($wp_table_name, $data, compact('id','user'))))
+        if(!$id)
         {
             //insert
             $data['user'] = $user;
@@ -210,6 +209,8 @@ function update_server($table_name, $key, $data, $id, $user){
                 $id =  $result->id;
             }
 
+        }else {
+            $wpdb->update($wp_table_name, $data, compact('id','user'));
         }
 
         return $id;

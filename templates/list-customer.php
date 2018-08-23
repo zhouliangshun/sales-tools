@@ -6,9 +6,8 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 <div id="wrap">
 
     <h1 class="wp-heading-inline"> <?= esc_html(get_admin_page_title()); ?> </h1>
-    <a href='javascript:onExport()'>下单</a>|
-    <a href='javascript:onDelete("<?php $user = wp_get_current_user();
-    echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除
+    <a href='javascript:onExport()' class="page-title-action">下单</a>|
+    <a href='javascript:onDelete("<?php $user = wp_get_current_user();echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")' class="page-title-action">删除</a>
         <table class="wp-list-table widefat fixed striped posts">
             <thead>
             <tr>
@@ -34,9 +33,9 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                 foreach ($customers as $customer) {
                     echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
-                            <th class = 'manage-column column-author name'><input  type='text' value='$customer->name'/></th>
-                            <th class = 'manage-column column-title column-primary sortable desc address'><input  type='text' value='$customer->address'/></th>
-                            <th class = 'manage-column column-phone phone'><input  type='text' value='$customer->phone'/></th>
+                            <th class = 'manage-column column-author name' style='width: 100%;height: 100%;padding: 10px 10px;'><input  type='text' value='$customer->name'/></th>
+                            <th class = 'manage-column column-title column-primary' style='width: 100%;height: 100%;padding: 10px 10px;'><input  type='text' value='$customer->address'/></th>
+                            <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
                           </tr>\n";
                 }
             }

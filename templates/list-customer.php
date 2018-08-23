@@ -54,9 +54,9 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         var text = "";
         jQuery('#the-list tr td input:checked').each(function () {
             var dataContains = $(this).closest('tr')[0];
-            text += $(dataContains).find('.name input').val();
-            text += "," + $(dataContains).find('.address input').val();
-            text += "," + $(dataContains).find('.phone input').val();
+            text += jQuery(dataContains).find('.name input').val();
+            text += "," + jQuery(dataContains).find('.address input').val();
+            text += "," + jQuery(dataContains).find('.phone input').val();
             text += ",化妆品;";
         });
 

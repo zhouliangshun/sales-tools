@@ -62,7 +62,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
                             <th class = 'manage-column column-score score'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->score'/> <span>分</span></th>
                             <th class = 'manage-column column-cons amount'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->amount'/> <span>元</span></th>
-                            <th class='manage-column column-actions'><a href='javascript:onUpdate($customer->server_id,$user->user_login,\"$edit_url\")'>更新</a></th>
+                            <th class='manage-column column-actions'><a href='javascript:onUpdate($customer->server_id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }
         }

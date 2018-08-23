@@ -53,7 +53,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     function onExport() {
         var text = "";
         jQuery('#the-list tr td input:checked').each(function () {
-            var dataContains = $(this).closest('tr')[0];
+            var dataContains = jQuery(this).closest('tr')[0];
             text += jQuery(dataContains).find('.name input').val();
             text += "," + jQuery(dataContains).find('.address input').val();
             text += "," + jQuery(dataContains).find('.phone input').val();

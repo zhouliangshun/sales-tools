@@ -190,7 +190,7 @@ class SalesTools {
     public function display_customer_list(){
 //        wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'/css/list.css',array(),'1.0.0',true);
         wp_enqueue_script('jquery');
-        wp_enqueue_script('copyme',"https://www.jqueryscript.net/demo/Copy-Entire-Textarea-To-Clipboard-Using-jQuery-Copyme/copyme.js");
+        wp_enqueue_script('copyme',plugins_url('js/copyme.js',__FILE__.'sales-tools'));
 		load_template(dirname( __FILE__ ) . '/templates/list-customer.php');
     }
     

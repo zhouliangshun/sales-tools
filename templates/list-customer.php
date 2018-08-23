@@ -1,10 +1,5 @@
 <?php
-require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
-require_once(dirname(__FILE__) . '/functions.php');
-if (!is_user_logged_in()) {
-    auth_redirect();
-    exit;
-}
+    require_once(plugin_dir_path(__FILE__) . '/sales-tools/functions.php');
 ?>
 
 
@@ -18,7 +13,10 @@ if (!is_user_logged_in()) {
             <th><span>姓名</span></th>
             <th>地址</th>
             <th>电话</th>
-            <th><a href='javascript:onExport()'>下单</a>|<a href='javascript:onDelete("<?php  $user = wp_get_current_user();echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__.'sales-tools')).$user->user_login?>")'>删除</th>
+            <th><a href='javascript:onExport()'>下单</a>|<a
+                        href='javascript:onDelete("<?php $user = wp_get_current_user();
+                        echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除
+            </th>
         </tr>
         </thead>
         <tbody id="the-list">
@@ -67,10 +65,10 @@ if (!is_user_logged_in()) {
     function onDelete(url) {
         var ids = new Array();
         $('#the-list tr td input:checked').each(function () {
-            ids.push($(this).attr("id").replace('cb-select-',''))
+            ids.push($(this).attr("id").replace('cb-select-', ''))
         });
-        $.getJSON(url + "&ids="+encodeURIComponent(ids.join()),function(result){
-            if(result['code'] == 200){
+        $.getJSON(url + "&ids=" + encodeURIComponent(ids.join()), function (result) {
+            if (result['code'] == 200) {
                 location.reload();
             }
         });

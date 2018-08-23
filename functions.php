@@ -45,6 +45,8 @@ function get_sale_record_list($user, $record, $name){
     return $result;
 }
 
+
+
 /**
  * 获取最新更新客户信息，如果last_time == -1，返回所有记录
  */

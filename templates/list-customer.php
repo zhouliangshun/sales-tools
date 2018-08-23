@@ -48,7 +48,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                 echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
                             <th class = 'manage-column column-author name' ><input  type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-title column-primary' ><input  type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
+                            <th class = 'manage-column column-title column-primary address' ><input  type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
                           </tr>\n";
             }

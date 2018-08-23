@@ -36,6 +36,15 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             <th scope="col" id="phone" class="manage-column column-phone">
                 <span>电话</span>
             </th>
+            <th scope="col" id="phone" class="manage-column column-score">
+                <span>积分</span>
+            </th>
+            <th scope="col" id="phone" class="manage-column column-cons">
+                <span>消费额</span>
+            </th>
+            <th scope="col" id="phone" class="manage-column column-actions">
+                <span>操作</span>
+            </th>
         </tr>
         </thead>
         <tbody id="the-list">
@@ -45,11 +54,15 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         $customers = get_customer_list($user->user_login);
         if (isset($customers)) {
             foreach ($customers as $customer) {
+                $edit_url = esc_url(plugins_url("api/v1/customer/update.php?id=$customer->server_id&user=$user->user_login", __FILE__ . 'sales-tools'));
                 echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
                             <th class = 'manage-column column-author name' ><input  type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-title column-primary address' ><input  type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
+                            <th class = 'manage-column column-score score'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->score'/> <span>分</span></th>
+                            <th class = 'manage-column column-cons amount'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->amount'/> <span>元</span></th>
+                            <th class='manage-column column-actions'><a href='javascript:onUpdate($customer->server_id,\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }
         }
@@ -93,6 +106,21 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             }
         });
     };
+
+    function onUpdate(id,url){
+        let tr = jQuery("#cb-select-"+id);
+        let name = jQuery(tr).find('.name input').val();
+        let address = jQuery(tr).find('.address input').val();
+        let phone = jQuery(tr).find('.phone input').val();
+        let score = jQuery(tr).find('.score input').val();
+        let amount = jQuery(tr).find('.amount input').val();
+
+        jQuery.getJSON(url ,{'name':name,'address':address,'phone':phone,'score':score,'amount':amount}, function (result) {
+            if (result['code'] == 200) {
+
+            }
+        });
+    }
 
     jQuery(document).ready(function () {
         // 开始写 jQuery 代码...

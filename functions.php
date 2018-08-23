@@ -173,7 +173,7 @@ function update_data($table_name, $data, $user){
                if(!($describe['id'] != 0 && 
                     $wpdb->update($wp_table_name, $describe, array('id'=>$describe['id'],'user'=>$user))))
              {
-                   //inser
+                   //insert
                    $describe['user'] = $user;
                    unset($describe['id']);
                    $wpdb->insert($wp_table_name, $describe);
@@ -189,7 +189,31 @@ function update_data($table_name, $data, $user){
             return $newId;
     }
 
-    
+}
+
+function update_server($table_name, $key, $data, $id, $user){
+    if(isset($data)){
+        global $wpdb;
+        $wp_table_name = get_wp_table_name($table_name);
+        $data['update_date'] = date("Y-m-d H:i:s");
+        if(!($id != 0 &&
+            $wpdb->update($wp_table_name, $data, array('id'=>$id,'user'=>$user))))
+        {
+            //insert
+            $data['user'] = $user;
+            unset($data['id']);
+            $wpdb->insert($wp_table_name, $data);
+
+            $key_value = $data[$key];
+            $result = $wpdb->get_row("SELECT id FROM $wp_table_name WHERE $key = '$key_value' AND user ='$user'");
+            if($result){
+                $id =  $result->id;
+            }
+
+        }
+
+        return $id;
+    }
 }
 
 function delete_data($table_name, $id){

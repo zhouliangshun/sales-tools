@@ -13,7 +13,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             <thead>
             <tr>
                 <td id="cb" class="manage-column column-cb check-column">
-                    <label class="screen-reader-text" for="cb-select-all-1">全选</label>
+                    <label class="screen-reader-text" for="cb-select-all">全选</label>
                     <input id="cb-select-all" type="checkbox">
                 </td>
                 <th scope="col" id="author" class="manage-column column-author">姓名</th>
@@ -21,7 +21,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                     <span>地址</span>
                     <span class="sorting-indicator"></span>
                 </th>
-                <th scope="col" id="phone" class="manage-column column-date sortable asc">
+                <th scope="col" id="phone" class="manage-column column-phone">
                     <span>电话</span>
                     <span class="sorting-indicator"></span></a>
                 </th>
@@ -36,9 +36,9 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                 foreach ($customers as $customer) {
                     echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
-                            <th class = 'name'><input  type='text' value='$customer->name'/></th>
-                            <th class = 'address'><input  type='text' value='$customer->address'/></th>
-                            <th class = 'phone'><input  type='text' value='$customer->phone'/></th>
+                            <th class = 'manage-column column-author name'><input  type='text' value='$customer->name'/></th>
+                            <th class = 'manage-column column-title column-primary sortable desc address'><input  type='text' value='$customer->address'/></th>
+                            <th class = 'manage-column column-phone phone'><input  type='text' value='$customer->phone'/></th>
                             <th>\n";
                 }
             }

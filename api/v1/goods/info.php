@@ -16,5 +16,3 @@ if(!isset($goods)){
 }
 
 echo wp_json_encode( array('code'=>200, 'msg'=>"", 'data'=>$goods) );
-
-?>

@@ -23,5 +23,3 @@ if(!isset($record_desc)){
 $data = get_sale_record_list($user, $record_desc->local_id, $name);
 
 echo wp_json_encode(array('code'=>200, 'msg'=>'','data'=>$data));
-
-?>

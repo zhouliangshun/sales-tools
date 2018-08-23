@@ -40,5 +40,3 @@ if(!result){
 }
 
 echo wp_json_encode(array('code'=>200, 'msg'=>"添加成功！"));
-
-?>

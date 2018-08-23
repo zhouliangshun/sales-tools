@@ -17,4 +17,3 @@ $data['last_sync_time'] = get_last_sync_time($user);
 clear_delete_ids($user);
 
 echo wp_json_encode( array('code'=>200, 'msg'=>"", 'data'=>$data) );
-?>

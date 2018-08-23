@@ -62,5 +62,3 @@ foreach($data['delete'] as $delete){
 update_last_sync_time($user, $last_time);
 
 echo wp_json_encode(array('code'=>200, 'msg'=>"SUCCESS", 'data'=>$result_ids));
-
-?>

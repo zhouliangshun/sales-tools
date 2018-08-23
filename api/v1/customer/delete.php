@@ -19,5 +19,3 @@ if(!isset($ids)){
 delete_data_server('customer',$ids,$user);
 
 echo wp_json_encode( array('code'=>200, 'msg'=>"", 'data'=>$goods) );
-
-?>

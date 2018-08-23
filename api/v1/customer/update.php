@@ -19,5 +19,3 @@ $amount = $_REQUEST['$amount'];
 $id = update_server('customer', 'name', compact('name', 'phone', 'score', 'amount'), $id, $user);
 
 echo wp_json_encode(array('code' => 200, 'msg' => "", 'data' => array('id' => $id)));
-
-?>

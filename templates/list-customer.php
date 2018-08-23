@@ -12,7 +12,10 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         <table class="wp-list-table widefat fixed striped posts">
             <thead>
             <tr>
-                <td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">全选</label><inputid="cb-select-all" type="checkbox"></td>
+                <td id="cb" class="manage-column column-cb check-column">
+                    <label class="screen-reader-text" for="cb-select-all-1">全选</label>
+                    <input id="cb-select-all" type="checkbox">
+                </td>
                 <th scope="col" id="title" class="manage-column column-title column-primary sortable desc">
                         <span>姓名</span><spanclass="sorting-indicator"></span>
                 </th>

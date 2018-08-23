@@ -6,9 +6,9 @@
 <div id="wrap">
 
     <h1 class="wp-heading-inline"> <?=esc_html(get_admin_page_title()); ?> </h1>
-    <a href='javascript:onExport()'>下单</a>|<a
-            href='javascript:onDelete("<?php $user = wp_get_current_user();
-            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除
+    <a href='javascript:onExport()'>下单</a>
+<!--    <a href='javascript:onDelete("--><?php //$user = wp_get_current_user();
+//            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?><!--")'>删除-->
     <table>
         <thead>
         <tr>

@@ -16,34 +16,8 @@ if (!is_user_logged_in()) {
     <link rel="stylesheet" href="./css/framework7.min.css">
     <title>快递批量下单系统</title>
     <!-- <link rel="stylesheet" href="css/app.css"> -->
-
-    <style type="text/css">
-        table {
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        table td, table th {
-            border: 1px solid #cad9ea;
-            color: #666;
-            height: 30px;
-        }
-
-        table thead th {
-            background-color: #CCE8EB;
-            width: 100px;
-        }
-
-        table tr:nth-child(odd) {
-            background: #fff;
-        }
-
-        table tr:nth-child(even) {
-            background: #F5FAFA;
-        }
-    </style>
     <!-- <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script> -->
+    <style rel="stylesheet" href = 'css/list.css'></style>
     <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://www.jqueryscript.net/demo/Copy-Entire-Textarea-To-Clipboard-Using-jQuery-Copyme/copyme.js"></script>
 

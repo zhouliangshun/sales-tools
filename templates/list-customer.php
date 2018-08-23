@@ -52,7 +52,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 
     function onExport() {
         var text = "";
-        $('#the-list tr td input:checked').each(function () {
+        jQuery('#the-list tr td input:checked').each(function () {
             var dataContains = $(this).closest('tr')[0];
             text += $(dataContains).find('.name input').val();
             text += "," + $(dataContains).find('.address input').val();
@@ -60,8 +60,8 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             text += ",化妆品;";
         });
 
-        $('#data-text').text(text);
-        $('#data-text').copyme();
+        jQuery('#data-text').text(text);
+        jQuery('#data-text').copyme();
 
         alert("已经复制到剪贴板！");
 

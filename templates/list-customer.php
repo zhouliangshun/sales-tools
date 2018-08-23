@@ -109,11 +109,11 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 
     function onUpdate(id, user, url) {
         let tr = jQuery("#cb-select-" + id);
-        let name = jQuery(tr[0]).children('input.name').val();
-        let address = jQuery(tr[0]).children('input.address').val();
-        let phone = jQuery(tr[0]).children('input.phone').val();
-        let score = jQuery(tr[0]).children('input.score').val();
-        let amount = jQuery(tr[0]).children('input.amount').val();
+        let name = tr.children('input.name').val();
+        let address = tr.children('input.address').val();
+        let phone = tr.children('input.phone').val();
+        let score = tr.children('input.score').val();
+        let amount = tr.children('input.amount').val();
 
         jQuery.getJSON(url, {
             'id': id,

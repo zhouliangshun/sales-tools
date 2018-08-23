@@ -13,9 +13,10 @@ $user = $_REQUEST['user'];
 
 $name = $_REQUEST['name'];
 $phone = $_REQUEST['phone'];
+$address = $_REQUEST['address'];
 $score = $_REQUEST['score'];
 $amount = $_REQUEST['$amount'];
 
-$id = update_server('customer', 'name', compact('name', 'phone', 'score', 'amount'), $id, $user);
+$id = update_server('customer', 'name', compact('name', 'phone', 'address', 'score', 'amount'), $id, $user);
 
 echo wp_json_encode(array('code' => 200, 'msg' => "", 'data' => array('id' => $id)));

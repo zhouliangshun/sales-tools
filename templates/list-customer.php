@@ -54,7 +54,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         $customers = get_customer_list($user->user_login);
         if (isset($customers)) {
             foreach ($customers as $customer) {
-                $edit_url = esc_url(plugins_url("api/v1/customer/update.php?id=$customer->server_id&user=$user->user_login", __FILE__ . 'sales-tools'));
+                $edit_url = esc_url(plugins_url("api/v1/customer/update.php?id=$customer->server_id&user=$user->user_login", dirname(__FILE__) . 'sales-tools'));
                 echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
                             <th class = 'manage-column column-author name' ><input  type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>

@@ -16,12 +16,14 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                     <label class="screen-reader-text" for="cb-select-all-1">全选</label>
                     <input id="cb-select-all" type="checkbox">
                 </td>
+                <th scope="col" id="author" class="manage-column column-author">姓名</th>
                 <th scope="col" id="title" class="manage-column column-title column-primary sortable desc">
-                        <span>姓名</span><spanclass="sorting-indicator"></span>
+                    <span>地址</span>
+                    <span class="sorting-indicator"></span>
                 </th>
-                <th scope="col" id="author" class="manage-column column-author">地址</th>
                 <th scope="col" id="phone" class="manage-column column-date sortable asc">
-                    <span>电话</span><span class="sorting-indicator"></span></a>
+                    <span>电话</span>
+                    <span class="sorting-indicator"></span></a>
                 </th>
             </tr>
             </thead>

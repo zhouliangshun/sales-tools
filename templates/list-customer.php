@@ -9,6 +9,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     <a class="page-title-action" href='javascript:onExport()'>下单</a>|
     <a class="page-title-action" href='javascript:onDelete("<?php $user = wp_get_current_user();
     echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
+    <hr class="wp-header-end">
     <table class="wp-list-table widefat fixed striped posts">
         <thead>
         <tr>
@@ -45,6 +46,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         </tbody>
     </table>
     <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="width: 0px;height: 0px"></textarea>
+<!--    <iframe id="iframe" src="http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat" width="600" height="1067" style="display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%)"></iframe>-->
 </div>
 
 <script>

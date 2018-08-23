@@ -108,7 +108,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     };
 
     function onUpdate(id, user, url) {
-        let tr = jQuery("#cb-select-" + id)[0];
+        let tr = jQuery("#"+id)[0];
         let name = jQuery(tr).find('.name input').val();
         let address = jQuery(tr).find('.address input').val();
         let phone = jQuery(tr).find('.phone input').val();

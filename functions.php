@@ -195,7 +195,7 @@ function update_server($table_name, $key, $data, $id, $user){
     if(isset($data)){
         global $wpdb;
         $wp_table_name = get_wp_table_name($table_name);
-        $data['update_date'] = date("Y-m-d H:i:s");
+        $data['update_date'] = time();
         if(!($id != 0 &&
             $wpdb->update($wp_table_name, $data, array('id'=>$id,'user'=>$user))))
         {

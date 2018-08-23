@@ -15,7 +15,7 @@ $name = $_REQUEST['name'];
 $phone = $_REQUEST['phone'];
 $address = $_REQUEST['address'];
 $score = $_REQUEST['score'];
-$amount = $_REQUEST['$amount'];
+$amount = $_REQUEST['amount'];
 
 $id = update_server('customer', 'name', compact('name', 'phone', 'address', 'score', 'amount'), $id, $user);
 

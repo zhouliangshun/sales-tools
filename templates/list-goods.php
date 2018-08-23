@@ -93,7 +93,7 @@
 						 </tr>
 					</thead>
 
-					<tbody i/d="the-list">
+					<tbody id="the-list">
 						<tr id="post-1" class="iedit author-self level-0 post-1 type-post
 							status-publish format-standard hentry category-uncategorized">
 							<th scope="row" class="check-column"> <label class="screen-reader-text"

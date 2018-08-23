@@ -57,8 +57,8 @@ if (!is_user_logged_in()) {
         ?>
         </tbody>
     </table>
+    <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="display: none"></textarea>
 </div>
-<textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
 <script>
 
 

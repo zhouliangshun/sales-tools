@@ -9,15 +9,17 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     <a href='javascript:onExport()'>下单</a>|
     <a href='javascript:onDelete("<?php $user = wp_get_current_user();
     echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除
-        <table>
+        <table class="wp-list-table widefat fixed striped posts">
             <thead>
             <tr>
-                <th><input id="cb-select-all" type="checkbox"><label for="cb-select-all"
-                                                                     id='label-seleect-all'>全选</label>
+                <td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">全选</label><inputid="cb-select-all" type="checkbox"></td>
+                <th scope="col" id="title" class="manage-column column-title column-primary sortable desc">
+                        <span>姓名</span><spanclass="sorting-indicator"></span>
                 </th>
-                <th><span>姓名</span></th>
-                <th>地址</th>
-                <th>电话</th>
+                <th scope="col" id="author" class="manage-column column-author">地址</th>
+                <th scope="col" id="phone" class="manage-column column-date sortable asc">
+                    <span>电话</span><span class="sorting-indicator"></span></a>
+                </th>
             </tr>
             </thead>
             <tbody id="the-list">

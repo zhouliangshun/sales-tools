@@ -178,7 +178,7 @@ class SalesTools {
         
         add_menu_page( '销售记录', '销售助手', 'manage_options',  'sales-tools', array($this, 'display_record_list')  ,'',20);
 
-        add_submenu_page( 'sales-tools', '客户管理' , '客户管理', 'manage_options', 'sales-customers',  array($this, 'display_custome_list'));
+        add_submenu_page( 'sales-tools', '客户管理' , '客户管理', 'manage_options', 'sales-customers',  array($this, 'display_customer_list'));
         add_submenu_page( 'sales-tools', '商品管理',  '商品管理', 'manage_options', 'sales-goods',  array($this, 'display_goods_list'));
     }
 
@@ -187,8 +187,9 @@ class SalesTools {
 		load_template(dirname( __FILE__ ) . '/templates/list-record.php');
     }
     
-    public function display_custome_list(){
+    public function display_customer_list(){
         wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'/css/list.css',array(),'1.0.0',true);
+        wp_enqueue_script('jquery');
 		load_template(dirname( __FILE__ ) . '/templates/list-customer.php');
     }
     

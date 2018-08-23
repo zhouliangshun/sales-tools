@@ -11,15 +11,16 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 
     <div class="tablenav top">
         <div class="alignleft actions bulkactions">
-            <div class="alignleft actions">
-                <a class="button action" href='javascript:onExport()'>快递下单</a>
-            </div>
-            <div class="alignleft actions">
-                <a class="button action" href='javascript:onDelete("<?php $user = wp_get_current_user();
-                echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
-            </div>
+            <a class="button action" href='javascript:onExport()'>快递下单</a>
+        </div>
+
+        <div class="alignleft actions">
+            <a class="button action" href='javascript:onDelete("<?php $user = wp_get_current_user();
+            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
         </div>
     </div>
+
+    <h2 class="screen-reader-text">客户列表</h2>
 
     <table class="wp-list-table widefat fixed striped posts">
         <thead>

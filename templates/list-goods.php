@@ -46,7 +46,7 @@
 					<option value="trash">移至回收站</option>
 					<select>
 						<input type="submit" id="doaction" class="button action" value="应用">
-					</div>
+            </div>
 					<div class="alignleft actions">
 						<label for="filter-by-date" class="screen-reader-text">按日期筛选</label>
 						<select name="m" id="filter-by-date">

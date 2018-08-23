@@ -184,6 +184,7 @@ class SalesTools {
 
 
     public function display_record_list(){
+        wp_enqueue_style( 'list_css' ,CSS . "list.css");//css
 		load_template(dirname( __FILE__ ) . '/templates/list-record.php');
     }
     

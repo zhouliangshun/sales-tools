@@ -1,8 +1,9 @@
 <?php
     include_once plugin_dir_path(__FILE__).'../functions.php';
+    wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'../css/list.css',array(),'1.0.0',true);
 ?>
 
-<h3 align="center">快递批量下单系统</h3>
+<h1 class="wp-heading-inline"> <?=esc_html(get_admin_page_title()); ?> </h1>
 <div id="wrap">
     <table>
         <thead>
@@ -39,7 +40,7 @@
         </tbody>
     </table>
 </div>
-<textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text"></textarea>
+<textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="display: none"></textarea>
 <script>
 
 
@@ -85,34 +86,6 @@
                 $('#label-seleect-all').text("全选");
             }
         });
-        // $('#btn-export').click(function () {
-        //     var text = "";
-        //     $('#the-list tr td input:checked').each(function () {
-        //         var dataContains = $(this).closest('tr')[0];
-        //         text += $(dataContains).find('.name input').val();
-        //         text += "," + $(dataContains).find('.address input').val();
-        //         text += "," + $(dataContains).find('.phone input').val();
-        //         text += ",化妆品;";
-        //     });
-        //
-        //     $('#data-text').text(text);
-        //     $('#data-text').copyme();
-        //
-        //     alert("已经复制到剪贴板！");
-        //
-        //     window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
-        // });
-        // $('#btn-delete').click(function (url) {
-        //     var ids = new Array();
-        //     $('#the-list tr td input:checked').each(function () {
-        //         ids.push($(this).attr("id"))
-        //     });
-        //     $.getJSON(url + "ids="+ids.join(),function(result){
-        //         if(result['code'] == 200){
-        //             location.reload();
-        //         }
-        //     });
-        // });
 
     });
 

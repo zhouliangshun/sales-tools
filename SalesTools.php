@@ -184,11 +184,11 @@ class SalesTools {
 
 
     public function display_record_list(){
-        wp_enqueue_style( 'list_css' ,CSS . "list.css");//css
 		load_template(dirname( __FILE__ ) . '/templates/list-record.php');
     }
     
     public function display_custome_list(){
+        wp_enqueue_style('list_css',plugin_dir_path(__FILE__).'/css/list.css',array(),'1.0.0',true);
 		load_template(dirname( __FILE__ ) . '/templates/list-customer.php');
     }
     

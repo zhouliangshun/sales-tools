@@ -57,11 +57,11 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                 $edit_url = esc_url(plugins_url("api/v1/customer/update.php", dirname(__FILE__) . 'sales-tools'));
                 echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
-                            <th class = 'manage-column column-author' ><input  class='name' type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-title column-primary' ><input  class='address' type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-phone'><input  type='text' class='phone'  style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
-                            <th class = 'manage-column column-score'><input  type='text' class='score' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->score'/> <span>分</span></th>
-                            <th class = 'manage-column column-cons amount'><input  type='text' class='amount' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->amount'/> <span>元</span></th>
+                            <th class = 'manage-column column-author name' ><input  type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
+                            <th class = 'manage-column column-title column-primary address' ><input  type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
+                            <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
+                            <th class = 'manage-column column-score score'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->score'/> <span>分</span></th>
+                            <th class = 'manage-column column-cons amount'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$customer->amount'/> <span>元</span></th>
                             <th class='manage-column column-actions'><a href='javascript:onUpdate($customer->server_id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }
@@ -108,12 +108,12 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     };
 
     function onUpdate(id, user, url) {
-        let tr = jQuery("#cb-select-" + id);
-        let name = tr.find('input.name').val();
-        let address = tr.find('input.address').val();
-        let phone = tr.find('input.phone').val();
-        let score = tr.find('input.score').val();
-        let amount = tr.find('input.amount').val();
+        let tr = jQuery("#cb-select-" + id)[0];
+        let name = tr.find('.name input').val();
+        let address = tr.find('.address input').val();
+        let phone = tr.find('.phone input').val();
+        let score = tr.find('.score input').val();
+        let amount = tr.find('.amount input').val();
 
         jQuery.getJSON(url, {
             'id': id,

@@ -6,10 +6,17 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 <div id="wrap">
 
     <h1 class="wp-heading-inline"> <?= esc_html(get_admin_page_title()); ?> </h1>
-    <a class="page-title-action" href='javascript:onExport()'>下单</a>|
-    <a class="page-title-action" href='javascript:onDelete("<?php $user = wp_get_current_user();
-    echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
+
     <hr class="wp-header-end">
+
+    <div class="tablenav top">
+        <div class="alignleft actions">
+            <a class="page-title-action" href='javascript:onExport()'>下单</a>|
+            <a class="page-title-action" href='javascript:onDelete("<?php $user = wp_get_current_user();
+            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
+        </div>
+    </div>
+
     <table class="wp-list-table widefat fixed striped posts">
         <thead>
         <tr>

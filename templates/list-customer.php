@@ -1,45 +1,47 @@
 <?php
-    include_once plugin_dir_path(__FILE__).'../functions.php';
+include_once plugin_dir_path(__FILE__) . '../functions.php';
 ?>
 
 
 <div id="wrap">
 
-    <h1 class="wp-heading-inline"> <?=esc_html(get_admin_page_title()); ?> </h1>
-    <a href='javascript:onExport()'>下单</a>
-<!--    <a href='javascript:onDelete("--><?php //$user = wp_get_current_user();
-//            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?><!--")'>删除-->
-    <table>
-        <thead>
-        <tr>
-            <th><input id="cb-select-all" type="checkbox"><label for="cb-select-all" id='label-seleect-all'>全选</label>
-            </th>
-            <th><span>姓名</span></th>
-            <th>地址</th>
-            <th>电话</th>
-        </tr>
-        </thead>
-        <tbody id="the-list">
-        <?php
+    <h1 class="wp-heading-inline"> <?= esc_html(get_admin_page_title()); ?> </h1>
+    <a href='javascript:onExport()'>下单</a>|
+    <a href='javascript:onDelete("<?php $user = wp_get_current_user();
+    echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除
+        <table>
+            <thead>
+            <tr>
+                <th><input id="cb-select-all" type="checkbox"><label for="cb-select-all"
+                                                                     id='label-seleect-all'>全选</label>
+                </th>
+                <th><span>姓名</span></th>
+                <th>地址</th>
+                <th>电话</th>
+            </tr>
+            </thead>
+            <tbody id="the-list">
+            <?php
 
-        $user = wp_get_current_user();
-        $customers = get_customer_list($user->user_login);
-        if (isset($customers)) {
-            foreach ($customers as $customer) {
-                echo "<tr id='$customer->server_id'>
+            $user = wp_get_current_user();
+            $customers = get_customer_list($user->user_login);
+            if (isset($customers)) {
+                foreach ($customers as $customer) {
+                    echo "<tr id='$customer->server_id'>
                             <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
                             <th class = 'name'><input  type='text' value='$customer->name'/></th>
                             <th class = 'address'><input  type='text' value='$customer->address'/></th>
                             <th class = 'phone'><input  type='text' value='$customer->phone'/></th>
                             <th>\n";
+                }
             }
-        }
 
-        ?>
-        </tbody>
-    </table>
+            ?>
+            </tbody>
+        </table>
+        <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="display: none"></textarea>
 </div>
-<textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="display: none"></textarea>
+
 <script>
 
 

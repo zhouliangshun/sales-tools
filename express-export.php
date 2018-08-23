@@ -17,7 +17,7 @@ if (!is_user_logged_in()) {
     <title>快递批量下单系统</title>
     <!-- <link rel="stylesheet" href="css/app.css"> -->
     <!-- <script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script> -->
-    <style rel="stylesheet" href = 'css/list.css'></style>
+    <link rel="stylesheet" href = './css/list.css'>
     <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://www.jqueryscript.net/demo/Copy-Entire-Textarea-To-Clipboard-Using-jQuery-Copyme/copyme.js"></script>
 

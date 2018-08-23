@@ -44,7 +44,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         ?>
         </tbody>
     </table>
-    <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="display: none"></textarea>
+    <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="width: 0px;height: 0px"></textarea>
 </div>
 
 <script>

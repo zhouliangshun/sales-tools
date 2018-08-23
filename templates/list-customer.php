@@ -17,13 +17,11 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                     <input id="cb-select-all" type="checkbox">
                 </td>
                 <th scope="col" id="author" class="manage-column column-author">姓名</th>
-                <th scope="col" id="title" class="manage-column column-title column-primary sortable desc">
+                <th scope="col" id="title" class="manage-column column-title column-primary">
                     <span>地址</span>
-                    <span class="sorting-indicator"></span>
                 </th>
                 <th scope="col" id="phone" class="manage-column column-phone">
                     <span>电话</span>
-                    <span class="sorting-indicator"></span></a>
                 </th>
             </tr>
             </thead>
@@ -39,7 +37,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-author name'><input  type='text' value='$customer->name'/></th>
                             <th class = 'manage-column column-title column-primary sortable desc address'><input  type='text' value='$customer->address'/></th>
                             <th class = 'manage-column column-phone phone'><input  type='text' value='$customer->phone'/></th>
-                            <th>\n";
+                          </tr>\n";
                 }
             }
 

@@ -66,10 +66,10 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-title title' ><input  type='text' value='$goods->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-area area' ><input  type='text' value='$goods->country' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-spec spec' ><input  type='text' value='$goods->spec' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-price price' ><input  type='text' value='$goods->sell_price' style='width: 100%;height: 100%;padding: 10px 10px;'/><span>元</span></th>
-                            <th class = 'manage-column column-price buy'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$goods->purchase_price'/><span>元</span></th>
-                            <th class = 'manage-column column-count count'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->count'/></th>
-                            <th class = 'manage-column column-note  column-primary note'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->comments'/></th>
+                            <th class = 'manage-column column-price price' ><input  type='text' value='$goods->sell_price' style='width: 80%;height: 100%;padding: 10px 10px;'/><span>元</span></th>
+                            <th class = 'manage-column column-price buy'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->purchase_price'/><span>元</span></th>
+                            <th class = 'manage-column column-count count'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$goods->count'/></th>
+                            <th class = 'manage-column column-note  column-primary note'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$goods->comments'/></th>
                             <th class = 'manage-column column-count'><span>$goods->sell_count 件 </span></th>
                             <th class='manage-column column-actions'><a href='javascript:onUpdate($goods->id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";

@@ -22,7 +22,11 @@ function get_update_record_describe_list($user, $last_time){
     return $result;
 }
 
-
+/**
+ * 获取某个用户的销售记录表
+ * @param $user 用户
+ * @return array|null|object 销售列表
+ */
 function get_describe_list($user){
     global $wpdb;
     $table_name = get_wp_table_name('record_describe');
@@ -87,6 +91,19 @@ function get_update_goods_list($user, $last_time){
     global $wpdb;
     $table_name = get_wp_table_name('goods');
     $query_str = "SELECT id AS server_id, local_id AS id, name, purchase_price, sell_price, country, spec, comments, count FROM $table_name WHERE update_date > $last_time AND user = '$user'";
+    $result = $wpdb->get_results($query_str);
+    return $result;
+}
+
+/**
+ * 获取用户的物品表
+ * @param $user 用户
+ * @return array|null|object 物品表
+ */
+function get_goods_list($user){
+    global $wpdb;
+    $table_name = get_wp_table_name('goods');
+    $query_str = "SELECT id , name, purchase_price, sell_price, country, spec, comments, count FROM $table_name WHERE user = '$user' ORDER BY country";
     $result = $wpdb->get_results($query_str);
     return $result;
 }

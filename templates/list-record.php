@@ -58,7 +58,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-cost cost' >$record->cost <span>元</span></th>
                             <th class = 'manage-column column-sales sales'>$record->sales <span>元</span></th>
                             <th class = 'manage-column column-profit profit'>$record->profit <span>元</span></th>
-                            <th class = 'manage-column column-date date'> <span>$record->create_date</span></th>
+                            <th class = 'manage-column column-date date'> <span>元</span></th>
                             <th class='manage-column column-actions'><a href='javascript:onUpdate($record->id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }

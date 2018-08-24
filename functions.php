@@ -26,7 +26,7 @@ function get_update_record_describe_list($user, $last_time){
 function get_describe_list($user){
     global $wpdb;
     $table_name = get_wp_table_name('record_describe');
-    $table_name_record = get_wp_table_name('record_describe');
+    $table_name_record = get_wp_table_name('sale_record');
     $query_str = "SELECT * FROM $table_name LEFT JOIN (SELECT pid, SUM(purchase_price * count) AS cost, SUM(sell_price * count) AS sales, SUM((sell_price-purchase_price) * count) AS profit FROM $table_name_record WHERE user = '$user' GROUP BY pid) A ON A.pid = $table_name.local_id WHERE user = '$user'";
     $result = $wpdb->get_results($query_str);
     return $result;

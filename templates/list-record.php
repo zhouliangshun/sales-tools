@@ -13,7 +13,7 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 
         <div class="alignleft actions">
             <a class="button action" href='javascript:onDelete("<?php $user = wp_get_current_user();
-            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', dirname(__FILE__))) . $user->user_login ?>")'>删除</a>
+            echo esc_url(plugins_url('api/v1/record/delete.php?user=', dirname(__FILE__))) . $user->user_login ?>")'>删除</a>
         </div>
     </div>
 

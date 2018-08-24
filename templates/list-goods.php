@@ -42,6 +42,9 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             <th scope="col" id="count" class="manage-column column-count">
                 <span>库存</span>
             </th>
+            <th scope="col" id="count" class="manage-column column-count">
+                <span>销量</span>
+            </th>
             <th scope="col" id="note" class="manage-column column-primary column-note">
                 <span>备注</span>
             </th>
@@ -65,7 +68,8 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-spec spec' ><input  type='text' value='$goods->spec' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-price price' ><input  type='text' value='$goods->sell_price' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-price buy'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$goods->purchase_price'/></th>
-                            <th class = 'manage-column column-count count'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->count'/> <span>分</span></th>
+                            <th class = 'manage-column column-count count'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->count'/> </th>
+                             <th class = 'manage-column column-count'><span>$goods->sell_count</span> </th>
                             <th class = 'manage-column column-note  column-primary note'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->comments'/> <span>元</span></th>
                             <th class='manage-column column-actions'><a href='javascript:onUpdate($goods->id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
@@ -93,20 +97,24 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
 
     function onUpdate(id, user, url) {
         let tr = jQuery("#"+id)[0];
-        let name = jQuery(tr).find('.name input').val();
-        let address = jQuery(tr).find('.address input').val();
-        let phone = jQuery(tr).find('.phone input').val();
-        let score = jQuery(tr).find('.score input').val();
-        let amount = jQuery(tr).find('.amount input').val();
+        let name = jQuery(tr).find('.title input').val();
+        let country = jQuery(tr).find('.area input').val();
+        let spec = jQuery(tr).find('.spec input').val();
+        let sellPrice = jQuery(tr).find('.score input').val();
+        let purchasePrice = jQuery(tr).find('.buy input').val();
+        let count = jQuery(tr).find('.count input').val();
+        let comments = jQuery(tr).find('.note input').val();
 
         jQuery.getJSON(url, {
             'id': id,
             'user': user,
             'name': name,
-            'address': address,
-            'phone': phone,
-            'score': score,
-            'amount': amount
+            'country': country,
+            'count': count,
+            'spec': spec,
+            'sell_price': sellPrice,
+            'purchase_price':purchasePrice,
+            'comments':comments
         }, function (result) {
             if (result['code'] == 200) {
 

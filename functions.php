@@ -103,7 +103,8 @@ function get_update_goods_list($user, $last_time){
 function get_goods_list($user){
     global $wpdb;
     $table_name = get_wp_table_name('goods');
-    $query_str = "SELECT id , name, purchase_price, sell_price, country, spec, comments, count FROM $table_name WHERE user = '$user' ORDER BY country";
+    $table_name_record = get_wp_table_name('sale_record');
+    $query_str = "SELECT id , name, purchase_price, sell_price, country, spec, comments, count, A.sell_count FROM $table_name LEFT JOIN (SELECT goods, SUM(count) AS sell_count FROM $table_name_record WHERE user = '$user' GROUP BY goods) A ON A.goods = $table_name.name WHERE $table_name.user = '$user' ORDER BY country";
     $result = $wpdb->get_results($query_str);
     return $result;
 }

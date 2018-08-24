@@ -10,17 +10,14 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
     <hr class="wp-header-end">
 
     <div class="tablenav top">
-        <div class="alignleft actions bulkactions">
-            <a class="button action" href='javascript:onExport()'>快递下单</a>
-        </div>
 
         <div class="alignleft actions">
             <a class="button action" href='javascript:onDelete("<?php $user = wp_get_current_user();
-            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', __FILE__ . 'sales-tools')) . $user->user_login ?>")'>删除</a>
+            echo esc_url(plugins_url('api/v1/customer/delete.php?user=', dirname(__FILE__))) . $user->user_login ?>")'>删除</a>
         </div>
     </div>
 
-    <h2 class="screen-reader-text">客户列表</h2>
+    <h2 class="screen-reader-text">销售列表</h2>
 
     <table class="wp-list-table widefat fixed striped posts">
         <thead>
@@ -29,12 +26,21 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                 <label class="screen-reader-text" for="cb-select-all">全选</label>
                 <input id="cb-select-all" type="checkbox">
             </td>
-            <th scope="col" id="author" class="manage-column column-author">姓名</th>
-            <th scope="col" id="title" class="manage-column column-title column-primary">
-                <span>地址</span>
+            <th scope="col" id="author" class="manage-column column-title column-primary">标题</th>
+            <th scope="col" id="title" class="manage-column column-cost ">
+                <span>成本</span>
             </th>
-            <th scope="col" id="phone" class="manage-column column-phone">
-                <span>电话</span>
+            <th scope="col" id="phone" class="manage-column column-sales">
+                <span>销售额</span>
+            </th>
+            <th scope="col" id="phone" class="manage-column column-profit">
+                <span>盈利额</span>
+            </th>
+            <th scope="col" id="phone" class="manage-column column-date">
+                <span>时间</span>
+            </th>
+            <th scope="col" id="phone" class="manage-column column-actions">
+                <span>操作</span>
             </th>
         </tr>
         </thead>
@@ -42,14 +48,18 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         <?php
 
         $user = wp_get_current_user();
-        $customers = get_customer_list($user->user_login);
-        if (isset($customers)) {
-            foreach ($customers as $customer) {
-                echo "<tr id='$customer->server_id'>
-                            <td><input id='cb-select-$customer->server_id' type='checkbox'></td>
-                            <th class = 'manage-column column-author name' ><input  type='text' value='$customer->name' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-title column-primary address' ><input  type='text' value='$customer->address' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
-                            <th class = 'manage-column column-phone phone'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$customer->phone'/></th>
+        $records = get_describe_list($user->user_login);
+        if (isset($records)) {
+            foreach ($records as $record) {
+                $edit_url = esc_url(plugins_url("api/v1/record/update.php", dirname(__FILE__) . 'sales-tools'));
+                echo "<tr id='$record->id'>
+                            <td><input id='cb-select-$record->id' type='checkbox'></td>
+                            <th class = 'manage-column column-title column-primary title' ><input  type='text' value='$record->title' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
+                            <th class = 'manage-column column-cost cost' >$record->cost <span>元</span></th>
+                            <th class = 'manage-column column-sales sales'>$record->sales <span>元</span></th>
+                            <th class = 'manage-column column-profit profit'>$record->profit <span>元</span></th>
+                            <th class = 'manage-column column-date date'> <span>元</span></th>
+                            <th class='manage-column column-actions'><a href='javascript:onUpdate($record->id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }
         }
@@ -57,30 +67,10 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
         ?>
         </tbody>
     </table>
-    <textarea align="center" placeholder="如无法自动复制请手动复制" id="data-text" style="width: 0px;height: 0px"></textarea>
-    <!--    <iframe id="iframe" src="http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat" width="600" height="1067" style="display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%)"></iframe>-->
 </div>
 
 <script>
 
-
-    function onExport() {
-        var text = "";
-        jQuery('#the-list tr td input:checked').each(function () {
-            var dataContains = jQuery(this).closest('tr')[0];
-            text += jQuery(dataContains).find('.name input').val();
-            text += "," + jQuery(dataContains).find('.address input').val();
-            text += "," + jQuery(dataContains).find('.phone input').val();
-            text += ",化妆品;";
-        });
-
-        jQuery('#data-text').text(text);
-        jQuery('#data-text').copyme();
-
-        alert("已经复制到剪贴板！");
-
-        window.open("http://op.yundasys.com/opserver/pages/addService/batch_send.html?openid=011jkgl60iv5CK18W3k600cyl60jkgll&appid=ydwechat", "韵达快递", "width=600,height=1000");
-    };
 
     function onDelete(url) {
         let ids = new Array();
@@ -93,6 +83,29 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             }
         });
     };
+
+    function onUpdate(id, user, url) {
+        let tr = jQuery("#"+id)[0];
+        let name = jQuery(tr).find('.name input').val();
+        let address = jQuery(tr).find('.address input').val();
+        let phone = jQuery(tr).find('.phone input').val();
+        let score = jQuery(tr).find('.score input').val();
+        let amount = jQuery(tr).find('.amount input').val();
+
+        jQuery.getJSON(url, {
+            'id': id,
+            'user': user,
+            'name': name,
+            'address': address,
+            'phone': phone,
+            'score': score,
+            'amount': amount
+        }, function (result) {
+            if (result['code'] == 200) {
+
+            }
+        });
+    }
 
     jQuery(document).ready(function () {
         // 开始写 jQuery 代码...

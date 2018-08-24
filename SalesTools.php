@@ -23,7 +23,7 @@ register_deactivation_hook( __FILE__, array( 'SalesTools', 'plugin_deactivation'
 
 
 
-$salesToos = new SalesTools();
+$salesTools = new SalesTools();
 
 class SalesTools {
 

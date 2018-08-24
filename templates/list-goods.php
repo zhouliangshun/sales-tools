@@ -42,11 +42,11 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
             <th scope="col" id="count" class="manage-column column-count">
                 <span>库存</span>
             </th>
-            <th scope="col" id="count" class="manage-column column-count">
-                <span>销量</span>
-            </th>
             <th scope="col" id="note" class="manage-column column-primary column-note">
                 <span>备注</span>
+            </th>
+            <th scope="col" id="count" class="manage-column column-count">
+                <span>销量</span>
             </th>
             <th scope="col" id="actions" class="manage-column column-actions">
                 <span>操作</span>
@@ -69,8 +69,8 @@ include_once plugin_dir_path(__FILE__) . '../functions.php';
                             <th class = 'manage-column column-price price' ><input  type='text' value='$goods->sell_price' style='width: 100%;height: 100%;padding: 10px 10px;'/></th>
                             <th class = 'manage-column column-price buy'><input  type='text' style='width: 100%;height: 100%;padding: 10px 10px;' value='$goods->purchase_price'/></th>
                             <th class = 'manage-column column-count count'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->count'/> </th>
-                             <th class = 'manage-column column-count'><span>$goods->sell_count</span> </th>
                             <th class = 'manage-column column-note  column-primary note'><input  type='text' style='width: 80%;height: 100%;padding: 10px 10px;' value='$goods->comments'/> <span>元</span></th>
+                            <th class = 'manage-column column-count'><span>$goods->sell_count 件 </span></th>
                             <th class='manage-column column-actions'><a href='javascript:onUpdate($goods->id,\"$user->user_login\",\"$edit_url\")'>更新</a></th>
                           </tr>\n";
             }
